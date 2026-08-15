@@ -39,6 +39,19 @@ vanilla_items = [
     needed_bl("Shield Recipes"),
     needed_bl("Bundle Recipes"),
     needed_bl("TNT Recipes"),
+    # Biomes
+    needed_bl("Ocean Biomes"),
+    needed_bl("Plains Biomes"),
+    needed_bl("Savanna Biomes"),
+    needed_bl("Forest Biomes"),
+    needed_bl("Jungle Biomes"),
+    needed_bl("Wetland Biomes"),
+    needed_bl("Mountain Biomes"),
+    needed_bl("Highland Biomes"),
+    needed_bl("Arid Biomes"),
+    needed_bl("Underground Biomes"),
+    needed_bl("Nether Biomes"),
+    needed_bl("End Biomes"),
     # USEFUL ###########################################################################################################
     # Materials
     useful("4 Emeralds"),
