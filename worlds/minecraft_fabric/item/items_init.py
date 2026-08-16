@@ -40,6 +40,19 @@ def create_items(world: FabricMinecraftWorld):
     for item in progression_bl:
         total_items = add_item_to_pool(world, item.name, total_items)
 
+    if "Natures Compass Logic" in world.options.logic_difficulty_options.value:
+        total_items = add_item_to_pool(world, "Ocean Biomes", total_items)
+        total_items = add_item_to_pool(world, "Plains Biomes", total_items)
+        total_items = add_item_to_pool(world, "Savanna Biomes", total_items)
+        total_items = add_item_to_pool(world, "Forest Biomes", total_items)
+        total_items = add_item_to_pool(world, "Jungle Biomes", total_items)
+        total_items = add_item_to_pool(world, "Wetland Biomes", total_items)
+        total_items = add_item_to_pool(world, "Mountain Biomes", total_items)
+        total_items = add_item_to_pool(world, "Highland Biomes", total_items)
+        total_items = add_item_to_pool(world, "Arid Biomes", total_items)
+        total_items = add_item_to_pool(world, "Underground Biomes", total_items)
+        total_items = add_item_to_pool(world, "Nether Biomes", total_items)
+        total_items = add_item_to_pool(world, "End Biomes", total_items)
 
     # Ruby Hunt Items
     if world.options.goal_condition.value == 4:

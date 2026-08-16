@@ -107,3 +107,9 @@ def connect(world, source: str, target: str, rule=None) -> Optional[Entrance]:
 def create_locations_and_connect(world: FabricMinecraftWorld, region_name: str, new_region_name: str, locations: dict[str, int], rule=None):
    create_locations_advanced(world, new_region_name, locations)
    connect(world, region_name, new_region_name, rule)
+
+def smart_add_rule(world: FabricMinecraftWorld, location: str, rule: Rule, location_type: int):
+    if blacklisted_location(world, location_type):
+        return
+    
+    world.set_rule(world.get_location(location), rule)

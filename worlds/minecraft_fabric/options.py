@@ -17,6 +17,7 @@ class GoalCondition(Choice):
     advancements_only - Goal when you collect a certain amount of Advancements and/or Items
     ruby_hunt - Goal when a certain amount of rubies are collected (McGuffin hunt)
     """
+    display_name = "Goal Condition"
     option_ender_dragon = 0
     option_wither = 1
     option_both_bosses = 2
@@ -317,6 +318,15 @@ class TimeSavingOptions(OptionSet):
         "Copper Oxidation",
     }
 
+class LogicDifficultyOptions(OptionSet):
+    display_name = "Logic Difficulty Options"
+    default = {
+        "Natures Compass Logic"
+    }
+    valid_keys = {
+        "Natures Compass Logic"
+    }
+
 ########################################################################################################################
 # TRAP STUFF ###########################################################################################################
 ########################################################################################################################
@@ -453,6 +463,7 @@ class FMCOptions(PerGameCommonOptions):
     keep_inventory: KeepInventory
     randomized_abilities: RandomizedAbilities
     time_saving_options: TimeSavingOptions
+    logic_difficulty_options: LogicDifficultyOptions
     # Traps
     trap_fill_percentage: TrapFillPercentage
     reverse_controls_trap_weight: ReverseControlsTrapWeight
@@ -481,7 +492,7 @@ option_groups = [
     ),
     OptionGroup(
         "Difficulty Options",
-        [ShouldHaveBeforeNetherAccess, ShouldHaveBeforeWitherOrDragon, ShouldHaveBeforeRaids, KeepInventory, RandomizedAbilities, TimeSavingOptions]
+        [ShouldHaveBeforeNetherAccess, ShouldHaveBeforeWitherOrDragon, ShouldHaveBeforeRaids, KeepInventory, RandomizedAbilities, TimeSavingOptions, LogicDifficultyOptions]
     ),
     OptionGroup(
         "Traps Options",

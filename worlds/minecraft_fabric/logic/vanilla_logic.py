@@ -245,7 +245,7 @@ def canDyeBlack():
 def canDyeGreen():
     createMethod = Has("Cogwheels") & canCraftAndesiteAlloyCreate() & canGetIron()
 
-    return canSmelt() | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
+    return (canSmelt() & aridBiomesExploration()) | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
 def canGetUpgradeTemplate():
     return canAccessNether() & canAccessChests()
@@ -288,6 +288,44 @@ def canCompleteRubyHunt():
     createMethod = Has("Water Wheels") | Has("Windmills")
 
     return Has("Ruby", count=RubyCount()) & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True)
+
+# BIOME CHECKS
+def oceanBiomesExploration():
+    return Has("Ocean Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def plainsBiomesExploration():
+    return Has("Plains Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def savannaBiomesExploration():
+    return Has("Savanna Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def forestBiomesExploration():
+    return Has("Forest Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def jungleBiomesExploration():
+    return Has("Jungle Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def wetlandBiomesExploration():
+    return Has("Wetland Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def mountainBiomesExploration():
+    return Has("Mountain Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def highlandBiomesExploration():
+    return Has("Highland Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def aridBiomesExploration():
+    return Has("Arid Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def undergroundBiomesExploration():
+    return Has("Underground Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def netherBiomesExploration():
+    return Has("Nether Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
+def endBiomesExploration():
+    return Has("End Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+
 
 ########################################################################################################################
 ########################################################################################################################

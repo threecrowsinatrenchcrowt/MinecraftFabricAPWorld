@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
 from worlds.minecraft_fabric.region.mc_regions_consts import *
-from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect
+from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect, smart_add_rule
 from worlds.minecraft_fabric.logic.vanilla_logic import *
 
 
@@ -34,6 +34,9 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Sneak 100": ADVANCEMENT_EXPLORATION,
         "It Spreads": ADVANCEMENT_EXPLORATION
     })
+    smart_add_rule(world, "Whatever Floats Your Goat!", mountainBiomesExploration() | highlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
+    smart_add_rule(world, "Sneak 100", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
+    smart_add_rule(world, "It Spreads", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES NETHER ACCESS
     create_region(world, "Menu", "NetherAccess", {
@@ -49,6 +52,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "With Our Powers Combined!": ADVANCEMENT_HARD,
         "Hot Tourist Destinations": ADVANCEMENT_EXPLORATION
     }, canAccessNether())
+    smart_add_rule(world, "Hot Tourist Destinations", netherBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES END ACCESS
     create_region(world, "NetherAccess", "EndAccess", {
@@ -71,6 +75,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     create_region(world, "Menu", "HasLeatherArmor", {
         "Light as a Rabbit": ADVANCEMENT_EXPLORATION
     }, canWearLeatherArmor())
+    smart_add_rule(world, "Light as a Rabbit", highlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES SMELTING
     create_region(world, "Menu", "CanSmeltItems", {
@@ -93,6 +98,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Diamonds!": ADVANCEMENT,
         "Sound of Music": ADVANCEMENT_EXPLORATION
     }, canUseIronTools())
+    smart_add_rule(world, "Sound of Music", highlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES IRON ARMOR
     create_region(world, "CanSmeltItems", "HasIronArmor", {
@@ -179,6 +185,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "The Lie": ADVANCEMENT,
         "Bukkit Bukkit": ADVANCEMENT_EXPLORATION
     }, canUseBucket())
+    smart_add_rule(world, "Bukkit Bukkit", wetlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES BUCKET & IRON TOOLS
     create_region(world, "HasBucket", "HasBucketAndIronTools", {
@@ -210,6 +217,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     create_region(world, "CanSmeltItems", "HasSpyglass", {
         "Is It a Bird?": ADVANCEMENT_EXPLORATION
     }, canUseSpyglass())
+    smart_add_rule(world, "Is It a Bird?", jungleBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES GLASS BOTTLES
     create_region(world, "CanSmeltItems", "HasBottles", {

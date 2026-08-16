@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 
-from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect
+from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect, smart_add_rule
 from worlds.minecraft_fabric.logic.create_logic import *
+from worlds.minecraft_fabric.logic.vanilla_logic import *
 from worlds.minecraft_fabric.region.mc_regions_consts import *
 
 if TYPE_CHECKING:
