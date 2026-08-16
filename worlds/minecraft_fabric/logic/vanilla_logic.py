@@ -1,10 +1,20 @@
 from __future__ import annotations
 
 from math import floor
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
+
+from typing_extensions import override
 
 if TYPE_CHECKING:
-    from worlds.minecraft_fabric import FabricMinecraftWorld
+    from worlds.minecraft_fabric import FabricMinecraftWorld, World
+
+from rule_builder.field_resolvers import FieldResolver
+from rule_builder.rules import Rule, Has, True_, HasAll, Filtered
+from rule_builder.options import OptionFilter
+
+from ..options import *
+
+from dataclasses import dataclass
 
 from BaseClasses import CollectionState
 
@@ -16,312 +26,268 @@ from BaseClasses import CollectionState
 
 # DIFFICULTY CHECK #####################################################################################################
 
-def getDifficultyRequirements(required_options: set[str], world: FabricMinecraftWorld, state: CollectionState):
-    required = True
-
-    if "Iron Weapons" in required_options:
-        required = required and canUseIronWeapons(world, state)
-    if "Iron Armor" in required_options:
-        required = required and canWearIronArmor(world, state)
-    if "Bow" in required_options:
-        required = required and canUseBow(world, state)
-    if "Sprint" in required_options:
-        required = required and optionalRequireSprint(world, state)
-    if "Jump" in required_options:
-        required = required and optionalRequireJump(world, state)
-    if "Beds" in required_options:
-        required = required and canSleep(world, state)
+def getDifficultyRequirements(required_options):
+    required = True_()
+    required = required & Filtered(canUseIronWeapons(), options=[OptionFilter(required_options, "Iron Weapons", operator="contains")], filtered_resolution=True)
+    required = required & Filtered(canWearIronArmor(), options=[OptionFilter(required_options, "Iron Armor", operator="contains")], filtered_resolution=True)
+    required = required & Filtered(canUseBow(), options=[OptionFilter(required_options, "Bow", operator="contains")], filtered_resolution=True)
+    required = required & Filtered(optionalRequireSprint(), options=[OptionFilter(required_options, "Sprint", operator="contains")], filtered_resolution=True)
+    required = required & Filtered(optionalRequireJump(), options=[OptionFilter(required_options, "Jump", operator="contains")], filtered_resolution=True)
+    required = required & Filtered(canSleep(), options=[OptionFilter(required_options, "Beds", operator="contains")], filtered_resolution=True)
     return required
 
 # OPTIONAL ABILITY CHECKS ##############################################################################################
 
-def optionalRequireSprint(world: FabricMinecraftWorld, state: CollectionState):
-    return checkRandomizedAbility(world, state, "Sprint", "Sprint")
+def optionalRequireSprint():
+    return checkRandomizedAbility("Sprint", "Sprint")
 
-def optionalRequireJump(world: FabricMinecraftWorld, state: CollectionState):
-    return checkRandomizedAbility(world, state, "Jump", "Jump")
+def optionalRequireJump():
+    return checkRandomizedAbility("Jump", "Jump")
 
-def canAccessChests(world: FabricMinecraftWorld, state: CollectionState):
-    return checkRandomizedAbility(world, state, "Chests", "Chests & Barrels")
+def canAccessChests():
+    return checkRandomizedAbility("Chests", "Chests & Barrels")
 
-def canSwim(world: FabricMinecraftWorld, state: CollectionState):
-    return checkRandomizedAbility(world, state, "Swim", "Swim")
+def canSwim():
+    return checkRandomizedAbility("Swim", "Swim")
 
-def checkRandomizedAbility(world: FabricMinecraftWorld, state: CollectionState, value: str, item: str):
-    if value in world.options.randomized_abilities.value:
-        return state.has(item, world.player)
-    else:
-        return True
+def checkRandomizedAbility(value: str, item: str):
+    return Has(item, options=[OptionFilter(RandomizedAbilities, value, operator="contains")], filtered_resolution=True)
 
-def hasOptionalGoalAbilities(world: FabricMinecraftWorld, state: CollectionState):
-    return optionalRequireJump(world, state) and optionalRequireSprint(world, state)
+def hasOptionalGoalAbilities():
+    return optionalRequireJump() & optionalRequireSprint()
 
-def hasTNT(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("TNT Recipes", world.player)
+def hasTNT():
+    return Has("TNT Recipes")
 
 # ABILITY CHECKS #######################################################################################################
 
-def canTrade(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Villager Trading", world.player)
+def canTrade():
+    return Has("Villager Trading")
 
-def canBarter(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Piglin Bartering", world.player) and canAccessNether(world, state) and canGetGold(world, state)
+def canBarter():
+    return Has("Piglin Bartering") & canAccessNether() & canGetGold()
 
-def canSleep(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Sleeping", world.player)
+def canSleep():
+    return Has("Sleeping")
 
 # CRAFTING STATION CHECKS ##############################################################################################
 
-def canSmelt(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Smelting", world.player)
+def canSmelt():
+    return Has("Progressive Smelting")
 
-def canSmeltBetter(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Smelting", world.player, 2)
+def canSmeltBetter():
+    return Has("Progressive Smelting", count=2)
 
-def canSmith(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Smithing", world.player)
+def canSmith():
+    return canGetIron() & Has("Smithing")
 
-def canBrew(world: FabricMinecraftWorld, state: CollectionState):
-    return canAccessNether(world, state) and canUseBottles(world, state) and state.has("Brewing", world.player)
+def canBrew():
+    return canAccessNether() & canUseBottles() & Has("Brewing")
 
-def canEnchant(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetObsidian(world, state) and state.has("Enchanting", world.player) and canCompactResources(world, state)
+def canEnchant():
+    return canGetObsidian() & Has("Enchanting") & canCompactResources()
 
-def canAccessMiscJobsites(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Other Crafting Stations", world.player)
+def canAccessMiscJobsites():
+    return Has("Other Crafting Stations")
 
 # MINING TOOL CHECKS ###################################################################################################
 
-def canUseStoneTools(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Tools", world.player)
+def canUseStoneTools():
+    return Has("Progressive Tools")
 
-def canUseIronTools(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Progressive Tools", world.player, 2)
+def canUseIronTools():
+    return canGetIron() & Has("Progressive Tools", count=2)
 
-def canUseDiamondTools(world: FabricMinecraftWorld, state: CollectionState):
-    return canUseIronTools(world, state) and state.has("Progressive Tools", world.player, 3)
+def canUseDiamondTools():
+    return canUseIronTools() & Has("Progressive Tools", count=3)
 
-def canUseNetheriteTools(world: FabricMinecraftWorld, state: CollectionState):
-    return (state.has("Progressive Tools", world.player, 4) and canSmith(world, state)
-            and canGetUpgradeTemplate(world, state) and canGetNetherite(world, state))
+def canUseNetheriteTools():
+    return (Has("Progressive Tools", count=4) & canSmith() & canGetUpgradeTemplate() & canGetNetherite())
 
 # WEAPON CHECKS ###################################################################################################
 
-def canUseStoneWeapons(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Weapons", world.player)
+def canUseStoneWeapons():
+    return Has("Progressive Weapons")
 
-def canUseIronWeapons(world: FabricMinecraftWorld, state: CollectionState):
-    return canUseStoneTools(world, state) and canGetIron(world, state) and state.has("Progressive Weapons", world.player, 2)
+def canUseIronWeapons():
+    return canUseStoneTools() & canGetIron() & Has("Progressive Weapons", count=2)
 
-def canUseDiamondWeapons(world: FabricMinecraftWorld, state: CollectionState):
-    return canUseIronTools(world, state) and state.has("Progressive Weapons", world.player, 3)
+def canUseDiamondWeapons():
+    return canUseIronTools() & Has("Progressive Weapons", count=3)
 
-def canUseNetheriteWeapons(world: FabricMinecraftWorld, state: CollectionState):
-    return (state.has("Progressive Weapons", world.player, 4)
-            and canSmith(world, state) and canGetUpgradeTemplate(world, state) and canGetNetherite(world, state))
+def canUseNetheriteWeapons():
+    return (Has("Progressive Weapons", count=4) & canSmith() & canGetUpgradeTemplate() & canGetNetherite())
 
 # ARMOR CHECKS #########################################################################################################
 
-def canWearLeatherArmor(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Armor", world.player)
+def canWearLeatherArmor():
+    return Has("Progressive Armor")
 
-def canWearGoldArmor(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetGold(world, state) and state.has("Progressive Armor", world.player, 2)
+def canWearGoldArmor():
+    return canGetGold() & Has("Progressive Armor", count=2)
 
-def canWearIronArmor(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Progressive Armor", world.player, 3)
+def canWearIronArmor():
+    return canGetIron() & Has("Progressive Armor", count=3)
 
-def canWearDiamondArmor(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Armor", world.player, 4) and canUseIronTools(world, state)
+def canWearDiamondArmor():
+    return Has("Progressive Armor", count=4) & canUseIronTools()
 
-def canWearNetheriteArmor(world: FabricMinecraftWorld, state: CollectionState):
-    return (state.has("Progressive Armor", world.player, 5) and canSmith(world, state) and canGetNetherite(world, state)
-            and canGetUpgradeTemplate(world, state))
+def canWearNetheriteArmor():
+    return (Has("Progressive Armor", count=5) & canSmith() & canGetNetherite() & canGetUpgradeTemplate())
 
 # OTHER TOOL CHECKS ####################################################################################################
 
-def canUseBucket(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Bucket Recipes", world.player)
+def canUseBucket():
+    return canGetIron() & Has("Bucket Recipes")
 
-def canUseFlintAndSteel(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Flint and Steel Recipes", world.player)
+def canUseFlintAndSteel():
+    return canGetIron() & Has("Flint and Steel Recipes")
 
-def canUseMinecart(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Minecart Recipes", world.player)
+def canUseMinecart():
+    return canGetIron() & Has("Minecart Recipes")
 
-def canUseBrush(world: FabricMinecraftWorld, state: CollectionState):
-        return canGetIron(world, state) and state.has("Brush Recipes", world.player)
+def canUseBrush():
+    return canGetIron() & Has("Brush Recipes")
 
-def canUseSpyglass(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Spyglass Recipes", world.player)
+def canUseSpyglass():
+    return canGetIron() & Has("Spyglass Recipes")
 
-def canUseShears(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetIron(world, state) and state.has("Shear Recipes", world.player)
+def canUseShears():
+    return canGetIron() & Has("Shear Recipes")
 
-def canUseFishingRod(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Fishing Rod Recipes", world.player)
+def canUseFishingRod():
+    return Has("Fishing Rod Recipes")
 
-def canUseBottles(world: FabricMinecraftWorld, state: CollectionState):
-    return canSmelt(world, state) and state.has("Glass Bottle Recipes", world.player)
+def canUseBottles():
+    return canSmelt() & Has("Glass Bottle Recipes")
 
-def canUseBow(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Archery", world.player)
+def canUseBow():
+    return Has("Progressive Archery")
 
-def canUseCrossBow(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Archery", world.player, 2) and canGetIron(world, state)
+def canUseCrossBow():
+    return Has("Progressive Archery", count=2) & canGetIron()
 
-def canUseShield(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Shield Recipes", world.player) and canGetIron(world, state)
+def canUseShield():
+    return Has("Shield Recipes") & canGetIron()
 
 # OTHER RECIPE CHECKS ##################################################################################################
 
-def canCompactResources(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Resource Compacting Recipes", world.player)
+def canCompactResources():
+    return Has("Resource Compacting Recipes")
 
-def canGetEyesOfEnder(world: FabricMinecraftWorld, state: CollectionState):
-    return canAccessNether(world, state) and state.has("Eye of Ender Recipes", world.player)
+def canGetEyesOfEnder():
+    return canAccessNether() & Has("Eye of Ender Recipes")
 
-def canGetAndUseArmorTrims(world: FabricMinecraftWorld, state: CollectionState):
-    return canSmith(world, state) and canAccessChests(world, state) and canWearLeatherArmor(world, state)
+def canGetAndUseArmorTrims():
+    return canSmith() & canAccessChests() & canWearLeatherArmor()
 
 # DIMENSION CHECKS #####################################################################################################
 
-def canAccessNether(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = True
+def canAccessNether():
+    createMethod = Has("Water Wheels") | Has("Windmills")
 
-    if hasCreate(world):
-        # # This is done to ensure Create Progression is present to some capacity if the mod is present
-        createMethod = (
-                state.has("Water Wheels", world.player) or
-                state.has("Windmills", world.player)
-        )
+    return (((canGetObsidian() | canUseBucket()) & canUseFlintAndSteel()) & getDifficultyRequirements(ShouldHaveBeforeNetherAccess) & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True))
 
-    return (((canGetObsidian(world, state) or canUseBucket(world, state)) and canUseFlintAndSteel(world, state))
-            and getDifficultyRequirements(world.options.required_before_nether.value, world, state) and createMethod)
-
-def canAccessEnd(world: FabricMinecraftWorld, state: CollectionState):
-    return canGetEyesOfEnder(world, state) and getDifficultyRequirements(world.options.required_before_bosses.value, world, state)
+def canAccessEnd():
+    return canGetEyesOfEnder() & getDifficultyRequirements(ShouldHaveBeforeWitherOrDragon)
 
 # MISC VANILLA #########################################################################################################
 
-def canGetNetherite(world: FabricMinecraftWorld, state: CollectionState):
-    return (hasTNT(world, state) or canSleep(world, state)) and canUseDiamondTools(world, state) and canAccessNether(world, state) and canAccessChests(world, state)
+def canGetNetherite():
+    return (hasTNT() | canSleep()) & canUseDiamondTools() & canAccessNether() & canAccessChests()
 
-def canPlaceBeacon(world: FabricMinecraftWorld, state: CollectionState):
-    return canGoalWither(world, state) and canGetIron(world, state) and canGetObsidian(world, state) and canCompactResources(world, state)
+def canPlaceBeacon():
+    return canGoalWither() & canGetIron() & canGetObsidian() & canCompactResources()
 
-def canGetPrismarine(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = False
+def canGetPrismarine():
+    createMethod = canUseStoneTools() & canHauntCreate()
 
-    if hasCreate(world):
-        createMethod = canUseStoneTools(world, state) and canHauntCreate(world, state)
+    return canSwim() | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
-    return canSwim(world, state) or createMethod
+def canGetObsidian():
+    createMethod = hasFanCreate() & canSwim()
 
-def canGetObsidian(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = False
+    return canUseDiamondTools() | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
-    if hasCreate(world):
-        createMethod = hasFanCreate(world, state) and canSwim(world, state)
+def canGetMud():
+    createMethod = hasMixerCreate() & canFillFluidWaterCreate()
 
-    return canUseDiamondTools(world, state) or createMethod
+    return canUseBottles() | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
-def canGetMud(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = False
+def canGetIron():
+    return canUseStoneTools() & canSmelt()
 
-    if hasCreate(world):
-        createMethod = hasMixerCreate(world, state) and canFillFluidWaterCreate(world, state)
+def canGetGold():
+    return ((canUseIronTools() & canSmelt()) |
+            (canAccessNether() & canCompactResources()))
 
-    return canUseBottles(world, state) or createMethod
+def canGetGoldNugget():
+    return ((canUseIronTools() & canGetIron() & canCompactResources()) |
+            canAccessNether())
 
-def canGetIron(world: FabricMinecraftWorld, state: CollectionState):
-    return canUseStoneTools(world, state) and canSmelt(world, state)
+def canCraftDriedKelp():
+    return canSwim() & canSmelt()
 
-def canGetGold(world: FabricMinecraftWorld, state: CollectionState):
-    return ((canUseIronTools(world, state) and canSmelt(world, state)) or
-            (canAccessNether(world, state) and canCompactResources(world, state)))
+def canGetCryingObsidian():
+    return canBarter() | canUseDiamondTools()
 
-def canGetGoldNugget(world: FabricMinecraftWorld, state: CollectionState):
-    return ((canUseIronTools(world, state) and canGetIron(world, state) and canCompactResources(world, state)) or
-            canAccessNether(world, state))
+def canDyeBasic():
+    return Has("Progressive Dye Recipes")
 
-def canCraftDriedKelp(world: FabricMinecraftWorld, state: CollectionState):
-    return canSwim(world, state) and canSmelt(world, state)
+def canDyeFull():
+    return Has("Progressive Dye Recipes", count=2)
 
-def canGetCryingObsidian(world: FabricMinecraftWorld, state: CollectionState):
-    return canBarter(world, state) or canUseDiamondTools(world, state)
+def canDyeBlack():
+    createMethod = Has("Cogwheels") & canCraftAndesiteAlloyCreate() & canGetIron()
 
-def canDyeBasic(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Dye Recipes", world.player)
+    return (canDyeBasic() & (canGoalWither() | canSwim())) | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
-def canDyeFull(world: FabricMinecraftWorld, state: CollectionState):
-    return state.has("Progressive Dye Recipes", world.player, 2)
+def canDyeGreen():
+    createMethod = Has("Cogwheels") & canCraftAndesiteAlloyCreate() & canGetIron()
 
-def canDyeBlack(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = False
+    return canSmelt() | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
-    if hasCreate(world):
-        createMethod = state.has("Cogwheels", world.player) and canCraftAndesiteAlloyCreate(world, state) and canGetIron(world, state)
+def canGetUpgradeTemplate():
+    return canAccessNether() & canAccessChests()
 
-    return (canDyeBasic(world, state) and (canGoalWither(world, state) or canSwim(world, state))) or createMethod
+def canCureZombieVillager():
+    return canBrew() & (canAccessNether() | canUseIronTools())
 
-def canDyeGreen(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = False
+def canGetSmoothStone():
+    return canSmelt() | canEnchant()
 
-    if hasCreate(world):
-        createMethod = state.has("Cogwheels", world.player) and canCraftAndesiteAlloyCreate(world, state) and canGetIron(world, state)
-
-    return canSmelt(world, state) or createMethod
-
-def canGetUpgradeTemplate(world: FabricMinecraftWorld, state: CollectionState):
-    return canAccessNether(world, state) and canAccessChests(world, state)
-
-def canCureZombieVillager(world: FabricMinecraftWorld, state: CollectionState):
-    return canBrew(world, state) and (canAccessNether(world, state) or canUseIronTools(world, state))
-
-def canGetSmoothStone(world: FabricMinecraftWorld, state: CollectionState):
-    return canSmelt(world, state) or canEnchant(world, state)
-
-def canFightRaid(world: FabricMinecraftWorld, state: CollectionState):
-    return getDifficultyRequirements(world.options.required_before_raids.value, world, state)
+def canFightRaid():
+    return getDifficultyRequirements(ShouldHaveBeforeRaids)
 
 # GOAL CHECKS ##########################################################################################################
 
-def canAccessVanillaEndGame(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = True
+def canAccessVanillaEndGame():
+    createMethod = Has("Water Wheels") & Has("Windmills") & Has("Steam Engines")
 
-    if hasCreate(world):
-        createMethod = (
-            state.has("Water Wheels", world.player) and
-            state.has("Windmills", world.player) and
-            state.has("Steam Engines", world.player)
-        )
+    return ((canEnchant() & canBrew() & canPlaceBeacon()
+            & canBeatDragonAndWither() & canUseDiamondTools())
+            & canAccessChests() & canSmith() & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True))
 
-    return ((canEnchant(world, state) and canBrew(world, state) and canPlaceBeacon(world, state)
-            and canBeatDragonAndWither(world, state) and canUseDiamondTools(world, state))
-            and canAccessChests(world, state) and canSmith(world, state) and createMethod)
+def canGoalEnderDragon():
+    return canAccessEnd()
 
-def canGoalEnderDragon(world: FabricMinecraftWorld, state: CollectionState):
-    return canAccessEnd(world, state)
+def canGoalWither():
+    return (canAccessNether() & Has("Wither Summoning")
+            & getDifficultyRequirements(ShouldHaveBeforeWitherOrDragon))
 
-def canGoalWither(world: FabricMinecraftWorld, state: CollectionState):
-    return (canAccessNether(world, state) and state.has("Wither Summoning", world.player)
-            and getDifficultyRequirements(world.options.required_before_bosses.value, world, state))
+def canBeatDragonAndWither():
+    return canGoalEnderDragon() & canGoalWither()
 
-def canBeatDragonAndWither(world: FabricMinecraftWorld, state: CollectionState):
-    return canGoalEnderDragon(world, state) and canGoalWither(world, state)
+@dataclass(frozen=True)
+class RubyCount(FieldResolver, game="Minecraft Fabric"):
+    @override
+    def resolve(self, world: "World") -> Any:
+        return floor(world.max_ruby_count * (world.options.percentage_of_rubies_needed.value * 0.01))
 
-def canCompleteRubyHunt(world: FabricMinecraftWorld, state: CollectionState):
-    createMethod = True
+def canCompleteRubyHunt():
+    createMethod = Has("Water Wheels") | Has("Windmills")
 
-    if hasCreate(world):
-        # This is done to ensure Create Progression is present to some capacity if the mod is present
-        createMethod = (
-                state.has("Water Wheels", world.player) or
-                state.has("Windmills", world.player)
-        )
-
-    return state.has("Ruby", world.player, floor(world.max_ruby_count * (world.options.percentage_of_rubies_needed.value * 0.01))) and createMethod
+    return Has("Ruby", count=RubyCount()) & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True)
 
 ########################################################################################################################
 ########################################################################################################################
@@ -329,31 +295,31 @@ def canCompleteRubyHunt(world: FabricMinecraftWorld, state: CollectionState):
 ########################################################################################################################
 ########################################################################################################################
 
-def canCraftAndesiteAlloyCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return canCompactResources(world, state) and canGetIron(world, state)
+def canCraftAndesiteAlloyCreate():
+    return canCompactResources() & canGetIron()
 
-def hasCogsCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return canCraftAndesiteAlloyCreate(world, state) and state.has("Cogwheels", world.player)
+def hasCogsCreate():
+    return canCraftAndesiteAlloyCreate() & Has("Cogwheels")
 
-def hasPressCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return (state.has("Mechanical Press Recipes", world.player) and canCompactResources(world, state) and
-            canCraftAndesiteAlloyCreate(world, state))
+def hasPressCreate():
+    return (Has("Mechanical Press Recipes") & canCompactResources() &
+            canCraftAndesiteAlloyCreate())
 
-def hasFanCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return canCraftAndesiteAlloyCreate(world, state) and hasPressCreate(world, state)
+def hasFanCreate():
+    return canCraftAndesiteAlloyCreate() & hasPressCreate()
 
-def canHauntCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return hasFanCreate(world, state) and canAccessNether(world, state)
+def canHauntCreate():
+    return hasFanCreate() & canAccessNether()
 
-def hasMixerCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return (state.has("Mechanical Mixer Recipes", world.player) and canCraftAndesiteAlloyCreate(world, state)
-            and hasCogsCreate(world, state) and hasPressCreate(world, state))
+def hasMixerCreate():
+    return (Has("Mechanical Mixer Recipes") & canCraftAndesiteAlloyCreate()
+            & hasCogsCreate() & hasPressCreate())
 
-def canFillFluidWaterCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return canUseBucket(world, state) or hasPumpCreate(world, state) or canUseBottles(world, state)
+def canFillFluidWaterCreate():
+    return canUseBucket() | hasPumpCreate() | canUseBottles()
 
-def hasPumpCreate(world: FabricMinecraftWorld, state: CollectionState):
-    return hasCogsCreate(world, state) and hasPressCreate(world, state)
+def hasPumpCreate():
+    return hasCogsCreate() & hasPressCreate()
 
 ########################################################################################################################
 ########################################################################################################################
@@ -361,6 +327,6 @@ def hasPumpCreate(world: FabricMinecraftWorld, state: CollectionState):
 ########################################################################################################################
 ########################################################################################################################
 
-def hasCreate(world: FabricMinecraftWorld):
-    return "create" in world.options.enabled_mods.value
+def hasCreate():
+    return OptionFilter(EnabledModSupport, "create", operator="contains")
 

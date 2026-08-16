@@ -48,7 +48,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "The Power of Books": ADVANCEMENT,
         "With Our Powers Combined!": ADVANCEMENT_HARD,
         "Hot Tourist Destinations": ADVANCEMENT_EXPLORATION
-    }, lambda state: canAccessNether(world, state))
+    }, canAccessNether())
 
     # REQUIRES END ACCESS
     create_region(world, "NetherAccess", "EndAccess", {
@@ -60,110 +60,110 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
        "Great View From Up Here": ADVANCEMENT,
        "Eye Spy": ADVANCEMENT,
        "The End?": ADVANCEMENT
-    }, lambda state: canAccessEnd(world, state))
+    }, canAccessEnd())
 
     # REQUIRES STONE TOOLS
     create_region(world, "Menu", "HasStoneTools", {
         "Getting an Upgrade": ADVANCEMENT
-    }, lambda state: canUseStoneTools(world, state))
+    }, canUseStoneTools())
 
     # REQUIRES LEATHER ARMOR
     create_region(world, "Menu", "HasLeatherArmor", {
         "Light as a Rabbit": ADVANCEMENT_EXPLORATION
-    }, lambda state: canWearLeatherArmor(world, state))
+    }, canWearLeatherArmor())
 
     # REQUIRES SMELTING
     create_region(world, "Menu", "CanSmeltItems", {
         "Hot Topic": ADVANCEMENT
-    }, lambda state: canSmelt(world, state))
+    }, canSmelt())
 
     # REQUIRES SMELTING
     create_region(world, "HasStoneTools", "CanGetIron", {
         "Acquire Hardware": ADVANCEMENT
-    }, lambda state: canGetIron(world, state))
+    }, canGetIron())
 
     # REQUIRES SHIELD
     create_region(world, "CanSmeltItems", "HasShield", {
         "Not Today, Thank You": ADVANCEMENT
-    }, lambda state: canUseShield(world, state))
+    }, canUseShield())
 
     # REQUIRES IRON TOOLS
     create_region(world, "CanSmeltItems", "HasIronTools", {
         "Isn't It Iron Pick": ADVANCEMENT,
         "Diamonds!": ADVANCEMENT,
         "Sound of Music": ADVANCEMENT_EXPLORATION
-    }, lambda state: canUseIronTools(world, state))
+    }, canUseIronTools())
 
     # REQUIRES IRON ARMOR
     create_region(world, "CanSmeltItems", "HasIronArmor", {
         "Suit Up": ADVANCEMENT
-    }, lambda state: canWearIronArmor(world, state))
+    }, canWearIronArmor())
 
     # REQUIRES DIAMOND TOOLS
     create_region(world, "HasIronTools", "HasDiamondTools", {
         "Ice Bucket Challenge": ADVANCEMENT
-    }, lambda state: canUseDiamondTools(world, state))
+    }, canUseDiamondTools())
 
     # REQUIRES DIAMOND ARMOR
     create_region(world, "HasIronTools", "HasDiamondArmor", {
         "Cover Me with Diamonds": ADVANCEMENT
-    }, lambda state: canWearDiamondArmor(world, state))
+    }, canWearDiamondArmor())
 
     # REQUIRES ARMOR TRIMS
     create_region(world, "CanSmeltItems", "CanSmithItems", {
         "Crafting a New Look": ADVANCEMENT
-    }, lambda state: canGetAndUseArmorTrims(world, state))
+    }, canGetAndUseArmorTrims())
 
     # REQUIRES NETHERITE TOOLS
     create_region(world, "CanSmithItems", "HasNetheriteTools", {
         "Serious Dedication": ADVANCEMENT_HARD
-    }, lambda state: canUseNetheriteTools(world, state))
+    }, canUseNetheriteTools())
 
     # REQUIRES NETHERITE Armor
     create_region(world, "CanSmithItems", "HasNetheriteArmor", {
         "Cover Me in Debris": ADVANCEMENT_HARD
-    }, lambda state: canWearNetheriteArmor(world, state))
+    }, canWearNetheriteArmor())
 
     # REQUIRES BOW
     create_region(world, "Menu", "HasBow", {
         "Take Aim": ADVANCEMENT,
         "Bullseye": ADVANCEMENT,
         "Sniper Duel": ADVANCEMENT
-    }, lambda state: canUseBow(world, state))
+    }, canUseBow())
 
     # REQUIRES CROSSBOW
     create_region(world, "CanSmeltItems", "HasCrossbow", {
         "Ol' Betsy": ADVANCEMENT,
         "Who's the Pillager Now?": ADVANCEMENT
-    }, lambda state: canUseCrossBow(world, state))
+    }, canUseCrossBow())
 
     # REQUIRES MINECART
     create_region(world, "CanSmeltItems", "HasMinecart", {
         "On A Rail": ADVANCEMENT
-    }, lambda state: canUseMinecart(world, state))
+    }, canUseMinecart())
 
     # REQUIRES FISHING
     create_region(world, "Menu", "HasFishing", {
         "Fishy Business": ADVANCEMENT,
         "A Complete Catalogue": ADVANCEMENT_HARD
-    }, lambda state: canUseFishingRod(world, state))
+    }, canUseFishingRod())
 
     # REQUIRES BRUSH
     create_region(world, "CanSmeltItems", "HasBrush", {
         "Respecting the Remnants": ADVANCEMENT,
         "Careful Restoration": ADVANCEMENT
-    }, lambda state: canUseBrush(world, state))
+    }, canUseBrush())
 
     # REQUIRES CHESTS
     create_region(world, "Menu", "HasChests", {
         "When Pigs Fly": ADVANCEMENT,
         "Overpowered": ADVANCEMENT_EXPLORATION
-    }, lambda state: canAccessChests(world, state))
+    }, canAccessChests())
 
     # REQUIRES TRADING
     create_region(world, "Menu", "HasTrading", {
         "What a Deal!": ADVANCEMENT
-    }, lambda state: canTrade(world, state))
+    }, canTrade())
 
     # REQUIRES ENCHANTING
     create_region(world, "HasDiamondTools", "HasEnchanting", {
@@ -171,162 +171,162 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Librarian": ADVANCEMENT,
         "Total Beelocation": ADVANCEMENT,
         "Surge Protector": ADVANCEMENT_HARD
-    }, lambda state: canEnchant(world, state))
+    }, canEnchant())
 
     # REQUIRES BUCKET
     create_region(world, "CanSmeltItems", "HasBucket", {
         "Hot Stuff": ADVANCEMENT,
         "The Lie": ADVANCEMENT,
         "Bukkit Bukkit": ADVANCEMENT_EXPLORATION
-    }, lambda state: canUseBucket(world, state))
+    }, canUseBucket())
 
-    # REQUIRES BUCKET AND IRON TOOLS
+    # REQUIRES BUCKET & IRON TOOLS
     create_region(world, "HasBucket", "HasBucketAndIronTools", {
         "Birthday Song": ADVANCEMENT_EXPLORATION
-    }, lambda state: canUseBucket(world, state) and canUseIronTools(world, state))
+    }, canUseBucket() & canUseIronTools())
 
     # REQUIRES BREWING
     create_region(world, "NetherAccess", "HasBrewing", {
         "Local Brewery": ADVANCEMENT,
         "A Furious Cocktail": ADVANCEMENT_HARD
-    }, lambda state: canBrew(world, state))
+    }, canBrew())
 
     # ZOMBIE DOCTOR
     create_region(world, "HasBrewing", "CanCureZombieVillager", {
         "Zombie Doctor": ADVANCEMENT
-    }, lambda state: canCureZombieVillager(world, state))
+    }, canCureZombieVillager())
 
     # REQUIRES BARTERING
     create_region(world, "NetherAccess", "HasBartering", {
         "Oh Shiny": ADVANCEMENT
-    }, lambda state: canBarter(world, state))
+    }, canBarter())
 
     # REQUIRES SLEEP
     create_region(world, "Menu", "HasSleep", {
         "Sweet Dreams": ADVANCEMENT
-    }, lambda state: canSleep(world, state))
+    }, canSleep())
 
     # REQUIRES SPYGLASS
     create_region(world, "CanSmeltItems", "HasSpyglass", {
         "Is It a Bird?": ADVANCEMENT_EXPLORATION
-    }, lambda state: canUseSpyglass(world, state))
+    }, canUseSpyglass())
 
     # REQUIRES GLASS BOTTLES
     create_region(world, "CanSmeltItems", "HasBottles", {
         "Sticky Situation": ADVANCEMENT,
         "Bee Our Guest": ADVANCEMENT
-    }, lambda state: canUseBottles(world, state))
+    }, canUseBottles())
 
     # REQUIRES SWIMMING
     create_region(world, "Menu", "HasSwim", {
         "A Throwaway Joke": ADVANCEMENT,
         "Glow and Behold!": ADVANCEMENT,
         "The Healing Power of Friendship!": ADVANCEMENT
-    }, lambda state: canSwim(world, state))
+    }, canSwim())
 
     # REQUIRES WITHER SUMMONING
     create_region(world, "NetherAccess", "CanSummonWither", {
         "Withering Heights": ADVANCEMENT
-    }, lambda state: canGoalWither(world, state))
+    }, canGoalWither())
 
     # REQUIRES BEACON
     create_region(world, "CanSummonWither", "CanUseBeacon", {
         "Bring Home the Beacon": ADVANCEMENT,
         "Beaconator": ADVANCEMENT_HARD
-    }, lambda state: canPlaceBeacon(world, state))
+    }, canPlaceBeacon())
 
     # REQUIRES CRYING OBSIDIAN
     create_region(world, "HasBartering", "CanGetCryingObsidian", {
         "Who is Cutting Onions?": ADVANCEMENT,
         "Not Quite \"Nine\" Lives": ADVANCEMENT
-    }, lambda state: canGetCryingObsidian(world, state))
+    }, canGetCryingObsidian())
 
     # REQUIRES RAIDS
     create_locations_and_connect(world, "MenuVanillaAdvancements", "CanFightRaid", {
         "Hero of the Village": ADVANCEMENT,
         "Postmortal": ADVANCEMENT_EXPLORATION
-    }, lambda state: canFightRaid(world, state))
+    }, canFightRaid())
 
     ####################################################################################################################
     # MULTIPLE CHECKS ##################################################################################################
     ####################################################################################################################
 
-    # REQUIRES CROSSBOW AND ENCHANTING
+    # REQUIRES CROSSBOW & ENCHANTING
     create_region(world, "HasCrossbow", "HasCrossbowAndEnchanting", {
         "Arbalistic": ADVANCEMENT_HARD,
         "Two Birds, One Arrow": ADVANCEMENT_HARD
-    }, lambda state: canUseCrossBow(world, state) and canEnchant(world, state))
+    }, canUseCrossBow() & canEnchant())
 
-    # REQUIRES TRADING AND BUCKETS
+    # REQUIRES TRADING & BUCKETS
     create_region(world, "HasTrading", "HasTradingAndBuckets", {
         "Star Trader": ADVANCEMENT
-    }, lambda state: canTrade(world, state) and canUseBucket(world, state))
+    }, canTrade() & canUseBucket())
 
-    # REQUIRES SWIMMING AND ENCHANTING
+    # REQUIRES SWIMMING & ENCHANTING
     create_region(world, "HasEnchanting", "HasSwimAndEnchanting", {
         "Very Very Frightening": ADVANCEMENT_HARD
-    }, lambda state: canSwim(world, state) and canEnchant(world, state))
+    }, canSwim() & canEnchant())
 
-    # REQUIRES SWIMMING AND BRUSH
+    # REQUIRES SWIMMING & BRUSH
     create_region(world, "HasBrush", "HasSwimAndBrush", {
         "Smells Interesting": ADVANCEMENT,
         "Little Sniffs": ADVANCEMENT_HARD,
         "Planting the Past": ADVANCEMENT_HARD
-    }, lambda state: canSwim(world, state) and canUseBrush(world, state))
+    }, canSwim() & canUseBrush())
 
-    # REQUIRES FISHING AND SMELTING
+    # REQUIRES FISHING & SMELTING
     create_region(world, "CanSmeltItems", "CanSmeltItemsAndHasFishing", {
         "Delicious Fish": ADVANCEMENT
-    }, lambda state: canSmelt(world, state) and canUseFishingRod(world, state))
+    }, canSmelt() & canUseFishingRod())
 
     # REQUIRES NETHERITE NO SMITHING
     create_region(world, "HasDiamondTools", "NetheriteNoSmithing", {
         "Country Lode, Take Me Home": ADVANCEMENT
-    }, lambda state: canSmelt(world, state) and canAccessNether(world, state) and canUseDiamondTools(world, state))
+    }, canSmelt() & canAccessNether() & canUseDiamondTools())
 
-    # REQUIRES SHEARS AND COMPACTING
+    # REQUIRES SHEARS & COMPACTING
     create_region(world, "CanSmeltItems", "HasShearsAndCompacting", {
         "Wax On": ADVANCEMENT,
         "Wax Off": ADVANCEMENT
-    }, lambda state: canUseShears(world, state) and canCompactResources(world, state))
+    }, canUseShears() & canCompactResources())
 
-    # REQUIRES BUCKET AND SWIM
+    # REQUIRES BUCKET & SWIM
     create_region(world, "HasBucket", "HasBucketAndSwim", {
         "Caves & Cliffs": ADVANCEMENT,
         "Tactical Fishing": ADVANCEMENT,
         "The Cutest Predator": ADVANCEMENT
-    }, lambda state: canUseBucket(world, state) and canSwim(world, state))
+    }, canUseBucket() & canSwim())
 
-    # REQUIRES SPYGLASS AND NETHER
+    # REQUIRES SPYGLASS & NETHER
     create_region(world, "HasSpyglass", "HasSpyglassNether", {
         "Is It a Balloon?": ADVANCEMENT
-    }, lambda state: canUseSpyglass(world, state) and canAccessNether(world, state))
+    }, canUseSpyglass() & canAccessNether())
 
-    # REQUIRES SPYGLASS AND END
+    # REQUIRES SPYGLASS & END
     create_region(world, "HasSpyglass", "HasSpyglassEnd", {
         "Is It a Plane?": ADVANCEMENT
-    }, lambda state: canUseSpyglass(world, state) and canAccessEnd(world, state))
+    }, canUseSpyglass() & canAccessEnd())
 
-    # REQUIRES COMPACTING AND SMELTING
+    # REQUIRES COMPACTING & SMELTING
     create_region(world, "CanSmeltItems", "CanSmeltAndCanCompact", {
         "Hired Help": ADVANCEMENT
-    }, lambda state: canGetIron(world, state) and canCompactResources(world, state) and canUseShears(world, state))
+    }, canGetIron() & canCompactResources() & canUseShears())
 
-    # REQUIRES NETHER AND FISHING ROD AND CHESTS
+    # REQUIRES NETHER & FISHING ROD & CHESTS
     create_region(world, "NetherAccess", "NetherAccessAndFishingRodAndChests", {
         "This Boat Has Legs": ADVANCEMENT,
         "Feels Like Home": ADVANCEMENT_HARD
-    }, lambda state: canAccessNether(world, state) and canUseFishingRod(world, state) and canAccessChests(world, state))
+    }, canAccessNether() & canUseFishingRod() & canAccessChests())
 
-    # REQUIRES END AND SMELTING
+    # REQUIRES END & SMELTING
     create_region(world, "EndAccess", "EndAccessAndSmelting", {
         "The End... Again...": ADVANCEMENT
-    }, lambda state: canAccessEnd(world, state) and canSmelt(world, state))
+    }, canAccessEnd() & canSmelt())
 
-    # REQUIRES END AND GLASS BOTTLES AND SMELTING
+    # REQUIRES END & GLASS BOTTLES & SMELTING
     create_region(world, "EndAccessAndSmelting", "EndAccessAndGlassBottles", {
         "You Need a Mint": ADVANCEMENT
-    }, lambda state: canAccessEnd(world, state) and canSmelt(world, state) and canUseBottles(world, state))
+    }, canAccessEnd() & canSmelt() & canUseBottles())
 
     # REQUIRES VANILLA END GAME
     create_region(world, "EndAccess", "VanillaEndGame", {
@@ -337,17 +337,17 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "A Balanced Diet": ADVANCEMENT_HARD,
         "Adventuring Time": ADVANCEMENT_UNREASONABLE,
         "How Did We Get Here?": ADVANCEMENT_UNREASONABLE
-    }, lambda state: canAccessVanillaEndGame(world, state))
+    }, canAccessVanillaEndGame())
 
-    # REQUIRES NETHER AND CHESTS
+    # REQUIRES NETHER & CHESTS
     create_region(world, "NetherAccess", "NetherAccessAndChests", {
         "War Pigs": ADVANCEMENT
-    }, lambda state: canAccessNether(world, state) and canAccessChests(world, state))
+    }, canAccessNether() & canAccessChests())
 
-    # REQUIRES NETHER + DIAMOND TOOLS OR CHESTS
+    # REQUIRES NETHER + DIAMOND TOOLS | CHESTS
     create_region(world, "NetherAccess", "NetherAccessGetDebree", {
         "Hidden in the Depths": ADVANCEMENT
-    }, lambda state: canAccessNether(world, state) and (canAccessChests(world, state) or canUseDiamondTools(world, state)))
+    }, canAccessNether() & (canAccessChests() | canUseDiamondTools()))
 
 
 
