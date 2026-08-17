@@ -35,6 +35,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "It Spreads": ADVANCEMENT_EXPLORATION
     })
     smart_add_rule(world, "You've Got a Friend in Me", pillagerOutpostExploration(), ADVANCEMENT_EXPLORATION)
+    smart_add_rule(world, "When the Squad Hops into Town", wetlandBiomesExploration(), ADVANCEMENT_HARD)
     smart_add_rule(world, "Whatever Floats Your Goat!", mountainBiomesExploration() | highlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
     smart_add_rule(world, "Sneak 100", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
     smart_add_rule(world, "It Spreads", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
@@ -53,6 +54,8 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "With Our Powers Combined!": ADVANCEMENT_HARD,
         "Hot Tourist Destinations": ADVANCEMENT_EXPLORATION
     }, canAccessNether())
+    smart_add_rule(world, "Those Were the Days", bastionRemnantExploration(), ADVANCEMENT)
+    smart_add_rule(world, "A Terrible Fortress", fortressExploration(), ADVANCEMENT)
     smart_add_rule(world, "Hot Tourist Destinations", netherBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES END ACCESS
@@ -143,6 +146,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Ol' Betsy": ADVANCEMENT,
         "Who's the Pillager Now?": ADVANCEMENT
     }, canUseCrossBow())
+    smart_add_rule(world, "Who's the Pillager Now?", pillagerOutpostExploration(), ADVANCEMENT)
 
     # REQUIRES MINECART
     create_region(world, "CanSmeltItems", "HasMinecart", {
@@ -154,12 +158,13 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Fishy Business": ADVANCEMENT,
         "A Complete Catalogue": ADVANCEMENT_HARD
     }, canUseFishingRod())
+    smart_add_rule(world, "A Complete Catalogue", villageExploration(), ADVANCEMENT_HARD)
 
     # REQUIRES BRUSH
     create_region(world, "CanSmeltItems", "HasBrush", {
         "Respecting the Remnants": ADVANCEMENT,
         "Careful Restoration": ADVANCEMENT
-    }, canUseBrush())
+    }, canUseBrush() & ruinsExploration())
 
     # REQUIRES CHESTS
     create_region(world, "Menu", "HasChests", {
@@ -258,7 +263,8 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Hero of the Village": ADVANCEMENT,
         "Postmortal": ADVANCEMENT_EXPLORATION
     }, canFightRaid())
-    smart_add_rule(world, "Postmortal", pillagerOutpostExploration(), ADVANCEMENT_EXPLORATION)
+    smart_add_rule(world, "Hero of the Village", pillagerOutpostExploration() & villageExploration(), ADVANCEMENT)
+    smart_add_rule(world, "Postmortal", pillagerOutpostExploration() & villageExploration(), ADVANCEMENT_EXPLORATION)
 
     ####################################################################################################################
     # MULTIPLE CHECKS ##################################################################################################
@@ -274,6 +280,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     create_region(world, "HasTrading", "HasTradingAndBuckets", {
         "Star Trader": ADVANCEMENT
     }, canTrade() & canUseBucket())
+    smart_add_rule(world, "Star Trader", villageExploration(), ADVANCEMENT)
 
     # REQUIRES SWIMMING & ENCHANTING
     create_region(world, "HasEnchanting", "HasSwimAndEnchanting", {
@@ -286,7 +293,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Smells Interesting": ADVANCEMENT,
         "Little Sniffs": ADVANCEMENT_HARD,
         "Planting the Past": ADVANCEMENT_HARD
-    }, canSwim() & canUseBrush())
+    }, canSwim() & canUseBrush() & ruinsExploration())
 
     # REQUIRES FISHING & SMELTING
     create_region(world, "CanSmeltItems", "CanSmeltItemsAndHasFishing", {
@@ -357,6 +364,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     create_region(world, "NetherAccess", "NetherAccessAndChests", {
         "War Pigs": ADVANCEMENT
     }, canAccessNether() & canAccessChests())
+    smart_add_rule(world, "War Pigs", bastionRemnantExploration(), ADVANCEMENT)
 
     # REQUIRES NETHER + DIAMOND TOOLS | CHESTS
     create_region(world, "NetherAccess", "NetherAccessGetDebree", {

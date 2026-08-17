@@ -251,7 +251,7 @@ def canGetUpgradeTemplate():
     return canAccessNether() & canAccessChests() & bastionRemnantExploration()
 
 def canCureZombieVillager():
-    return canBrew() & (canAccessNether() | canUseIronTools()) & villageExploration()
+    return canBrew() & (canAccessNether() | canUseIronTools()) & villageExploration() & (canAccessNether() | wetlandBiomesExploration() | forestBiomesExploration())
 
 def canGetSmoothStone():
     return canSmelt() | canEnchant()
@@ -266,7 +266,13 @@ def canAccessVanillaEndGame():
 
     return ((canEnchant() & canBrew() & canPlaceBeacon()
             & canBeatDragonAndWither() & canUseDiamondTools())
-            & canAccessChests() & canSmith() & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True))
+            & canAccessChests() & canSmith() & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True)
+            & endCityExploration() & fortressExploration() & bastionRemnantExploration()
+            & ancientCityExploration() & mansionExploration() & monumentExploration()
+            & ruinsExploration() & plainsBiomesExploration() & forestBiomesExploration()
+            & undergroundBiomesExploration() & wetlandBiomesExploration() & villageExploration()
+            & desertPyramidExploration() & oceanBiomesExploration() & highlandBiomesExploration()
+            & jungleBiomesExploration() & pillagerOutpostExploration())
 
 def canGoalEnderDragon():
     return canAccessEnd()

@@ -20,29 +20,23 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Oak Planks (Itemsanity)": ITEMSANITY,
         "Spruce Planks (Itemsanity)": ITEMSANITY,
         "Birch Planks (Itemsanity)": ITEMSANITY,
-        "Acacia Planks (Itemsanity)": ITEMSANITY,
         "Oak Sapling (Itemsanity)": ITEMSANITY,
         "Spruce Sapling (Itemsanity)": ITEMSANITY,
         "Birch Sapling (Itemsanity)": ITEMSANITY,
-        "Acacia Sapling (Itemsanity)": ITEMSANITY,
         "Sand (Itemsanity)": ITEMSANITY,
         "Gravel (Itemsanity)": ITEMSANITY,
         "Oak Log (Itemsanity)": ITEMSANITY,
         "Spruce Log (Itemsanity)": ITEMSANITY,
         "Birch Log (Itemsanity)": ITEMSANITY,
-        "Acacia Log (Itemsanity)": ITEMSANITY,
         "Stripped Oak Log (Itemsanity)": ITEMSANITY,
         "Stripped Spruce Log (Itemsanity)": ITEMSANITY,
         "Stripped Birch Log (Itemsanity)": ITEMSANITY,
-        "Stripped Acacia Log (Itemsanity)": ITEMSANITY,
         "Stripped Oak Wood (Itemsanity)": ITEMSANITY,
         "Stripped Spruce Wood (Itemsanity)": ITEMSANITY,
         "Stripped Birch Wood (Itemsanity)": ITEMSANITY,
-        "Stripped Acacia Wood (Itemsanity)": ITEMSANITY,
         "Oak Wood (Itemsanity)": ITEMSANITY,
         "Spruce Wood (Itemsanity)": ITEMSANITY,
         "Birch Wood (Itemsanity)": ITEMSANITY,
-        "Acacia Wood (Itemsanity)": ITEMSANITY,
         "Sandstone (Itemsanity)": ITEMSANITY,
         "Chiseled Sandstone (Itemsanity)": ITEMSANITY,
         "Cut Sandstone (Itemsanity)": ITEMSANITY,
@@ -63,7 +57,6 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Oak Slab (Itemsanity)": SLAB,
         "Spruce Slab (Itemsanity)": SLAB,
         "Birch Slab (Itemsanity)": SLAB,
-        "Acacia Slab (Itemsanity)": SLAB,
         "Chiseled Bookshelf (Itemsanity)": ITEMSANITY,
         "Torch (Itemsanity)": ITEMSANITY,
         "Crafting Table (Itemsanity)": ITEMSANITY,
@@ -98,7 +91,6 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Oak Fence (Itemsanity)": WALL,
         "Spruce Fence (Itemsanity)": WALL,
         "Birch Fence (Itemsanity)": WALL,
-        "Acacia Fence (Itemsanity)": WALL,
         "Pumpkin (Itemsanity)": ITEMSANITY,
         "Deepslate Bricks (Itemsanity)": ITEMSANITY,
         "Deepslate Tiles (Itemsanity)": ITEMSANITY,
@@ -108,7 +100,6 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Oak Stairs (Itemsanity)": STAIR,
         "Spruce Stairs (Itemsanity)": STAIR,
         "Birch Stairs (Itemsanity)": STAIR,
-        "Acacia Stairs (Itemsanity)": STAIR,
         "Cobblestone Wall (Itemsanity)": WALL,
         "Granite Wall (Itemsanity)": WALL,
         "Andesite Wall (Itemsanity)": WALL,
@@ -147,27 +138,21 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Oak Button (Itemsanity)": ITEMSANITY,
         "Spruce Button (Itemsanity)": ITEMSANITY,
         "Birch Button (Itemsanity)": ITEMSANITY,
-        "Acacia Button (Itemsanity)": ITEMSANITY,
         "Oak Pressure Plate (Itemsanity)": ITEMSANITY,
         "Spruce Pressure Plate (Itemsanity)": ITEMSANITY,
         "Birch Pressure Plate (Itemsanity)": ITEMSANITY,
-        "Acacia Pressure Plate (Itemsanity)": ITEMSANITY,
         "Oak Door (Itemsanity)": ITEMSANITY,
         "Spruce Door (Itemsanity)": ITEMSANITY,
         "Birch Door (Itemsanity)": ITEMSANITY,
-        "Acacia Door (Itemsanity)": ITEMSANITY,
         "Oak Trapdoor (Itemsanity)": ITEMSANITY,
         "Spruce Trapdoor (Itemsanity)": ITEMSANITY,
         "Birch Trapdoor (Itemsanity)": ITEMSANITY,
-        "Acacia Trapdoor (Itemsanity)": ITEMSANITY,
         "Oak Fence Gate (Itemsanity)": WALL,
         "Spruce Fence Gate (Itemsanity)": WALL,
         "Birch Fence Gate (Itemsanity)": WALL,
-        "Acacia Fence Gate (Itemsanity)": WALL,
         "Oak Boat (Itemsanity)": ITEMSANITY,
         "Spruce Boat (Itemsanity)": ITEMSANITY,
         "Birch Boat (Itemsanity)": ITEMSANITY,
-        "Acacia Boat (Itemsanity)": ITEMSANITY,
         "Apple (Itemsanity)": ITEMSANITY,
         "Arrow (Itemsanity)": ITEMSANITY,
         "Coal (Itemsanity)": ITEMSANITY,
@@ -192,7 +177,6 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Oak Sign (Itemsanity)": ITEMSANITY,
         "Spruce Sign (Itemsanity)": ITEMSANITY,
         "Birch Sign (Itemsanity)": ITEMSANITY,
-        "Acacia Sign (Itemsanity)": ITEMSANITY,
         "Snowball (Itemsanity)": ITEMSANITY,
         "Leather (Itemsanity)": ITEMSANITY,
         "Paper (Itemsanity)": ITEMSANITY,
@@ -245,12 +229,65 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Sunflower (Itemsanity)": FLOWER_AND_EXPLORATION,
         "Sweet Berries (Itemsanity)": ITEMSANITY_EXPLORATION
     })
+    smart_add_rule(world, "Rooted Dirt (Itemsanity)", undergroundBiomesExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Allium (Itemsanity)", forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Red Tulip (Itemsanity)", plainsBiomesExploration() | forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Orange Tulip (Itemsanity)", plainsBiomesExploration() | forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "White Tulip (Itemsanity)", plainsBiomesExploration() | forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Pink Tulip (Itemsanity)", plainsBiomesExploration() | forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Oxeye Daisy (Itemsanity)", plainsBiomesExploration() | forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Cornflower (Itemsanity)", plainsBiomesExploration() | forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Lily of the Valley (Itemsanity)", forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Brown Mushroom (Itemsanity)", forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether(), ITEMSANITY)
+    smart_add_rule(world, "Red Mushroom (Itemsanity)", forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether(), ITEMSANITY)
+    smart_add_rule(world, "Dripstone Block (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Moss Carpet (Itemsanity)", undergroundBiomesExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Moss Block (Itemsanity)", undergroundBiomesExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Big Dripleaf (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Spore Blossom (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Azalea (Itemsanity)", undergroundBiomesExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Flowering Azalea (Itemsanity)", undergroundBiomesExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Lilac (Itemsanity)", forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Rose Bush (Itemsanity)", forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Peony (Itemsanity)", forestBiomesExploration(), FLOWER)
+    smart_add_rule(world, "Mushroom Stew (Itemsanity)", forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether(), ITEMSANITY)
+    smart_add_rule(world, "Fermented Spider Eye (Itemsanity)", forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether(), ITEMSANITY)
+    smart_add_rule(world, "Carrot (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Potato (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Poisonous Potato (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Raw Rabbit (Itemsanity)", highlandBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Rabbit's Foot (Itemsanity)", highlandBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Rabbit Hide (Itemsanity)", highlandBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Beetroot (Itemsanity)", villageExploration(), ITEMSANITY)
+    smart_add_rule(world, "Beetroot Seeds (Itemsanity)", villageExploration(), ITEMSANITY)
+    smart_add_rule(world, "Beetroot Soup (Itemsanity)", villageExploration(), ITEMSANITY)
+    smart_add_rule(world, "Glow Berries (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Pointed Dripstone (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Suspicious Stew (Itemsanity)", forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether(), ITEMSANITY)
     smart_add_rule(world, "Bell (Itemsanity)", villageExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Cactus (Itemsanity)", aridBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Sunflower (Itemsanity)", plainsBiomesExploration(), FLOWER_AND_EXPLORATION)
     smart_add_rule(world, "Sweet Berries (Itemsanity)", forestBiomesExploration(), ITEMSANITY_EXPLORATION)
-    smart_add_rule(world, "Big Dripleaf (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
-    smart_add_rule(world, "Spore Blossom (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
+
+    # SAVANNA BIOME NATURE COMPASS LOGIC
+    create_region(world, "Menu", "Savanna Exploration", {
+        "Acacia Planks (Itemsanity)": ITEMSANITY,
+        "Acacia Sapling (Itemsanity)": ITEMSANITY,
+        "Acacia Log (Itemsanity)": ITEMSANITY,
+        "Stripped Acacia Log (Itemsanity)": ITEMSANITY,
+        "Stripped Acacia Wood (Itemsanity)": ITEMSANITY,
+        "Acacia Wood (Itemsanity)": ITEMSANITY,
+        "Acacia Slab (Itemsanity)": SLAB,
+        "Acacia Fence (Itemsanity)": WALL,
+        "Acacia Stairs (Itemsanity)": STAIR,
+        "Acacia Button (Itemsanity)": ITEMSANITY,
+        "Acacia Pressure Plate (Itemsanity)": ITEMSANITY,
+        "Acacia Door (Itemsanity)": ITEMSANITY,
+        "Acacia Trapdoor (Itemsanity)": ITEMSANITY,
+        "Acacia Fence Gate (Itemsanity)": WALL,
+        "Acacia Boat (Itemsanity)": ITEMSANITY,
+        "Acacia Sign (Itemsanity)": ITEMSANITY
+    }, savannaBiomesExploration())
 
     # HIGHLANDS BIOME NATURE COMPASS LOGIC
     create_region(world, "Menu", "HighlandsExploration", {
@@ -449,6 +486,9 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Verdant Froglight (Itemsanity)": ITEMSANITY_HARD,
         "Pearlescent Froglight (Itemsanity)": ITEMSANITY_HARD
     },  canAccessNether())
+    smart_add_rule(world, "Ochre Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
+    smart_add_rule(world, "Verdant Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
+    smart_add_rule(world, "Pearlescent Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
 
     # REQUIRES END ACCESS
     create_region(world, "NetherAccess", "EndAccess", {
@@ -465,6 +505,9 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Chorus Fruit (Itemsanity)": ITEMSANITY,
         "Shulker Shell (Itemsanity)": ITEMSANITY
     },  canAccessEnd())
+    smart_add_rule(world, "Elytra (Itemsanity)", endCityExploration(), ITEMSANITY)
+    smart_add_rule(world, "Dragon Head (Itemsanity)", endCityExploration(), ITEMSANITY)
+    smart_add_rule(world, "Shulker Shell (Itemsanity)", endCityExploration(), ITEMSANITY)
 
     # REQUIRES STONE TOOLS
     create_region(world, "Menu", "HasStoneTools", {
@@ -524,6 +567,9 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Cracked Deepslate Bricks (Itemsanity)": ITEMSANITY,
         "Cracked Deepslate Tiles (Itemsanity)": ITEMSANITY
     },  canSmelt())
+    smart_add_rule(world, "Baked Potato (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Cooked Rabbit (Itemsanity)", highlandBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Rabbit Stew (Itemsanity)", highlandBiomesExploration() & (forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether()), ITEMSANITY)
 
     # CAN GET IRON
     create_region(world, "HasStoneTools", "CanSmeltItemsIron", {
@@ -593,6 +639,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Glistering Melon Slice (Itemsanity)": ITEMSANITY_EXPLORATION,
         "Golden Carrot (Itemsanity)": ITEMSANITY
     },  canGetGoldNugget())
+    smart_add_rule(world, "Glistering Melon Slice (Itemsanity)", jungleBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     # REQUIRES IRON WEAPONS
     create_region(world, "CanSmeltItems", "HasIronWeapons", {
@@ -693,6 +740,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Carrot on a Stick (Itemsanity)": ITEMSANITY,
         "Fishing Rod (Itemsanity)": ITEMSANITY
     },  canUseFishingRod())
+    smart_add_rule(world, "Carrot on a Stick (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
 
     # REQUIRES BRUSH
     create_region(world, "CanSmeltItems", "HasBrush", {
@@ -763,10 +811,14 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Silence Armor Trim (Itemsanity)": TRIM,
     },  canAccessChests())
     smart_add_rule(world, "Jungle Boat with Chest (Itemsanity)", jungleBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Acacia Boat with Chest (Itemsanity)", savannaBiomesExploration(), ITEMSANITY)
     smart_add_rule(world, "Cherry Boat with Chest (Itemsanity)", highlandBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Dark Oak Boat with Chest (Itemsanity)", forestBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Mangrove Boat with Chest (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Bamboo Raft with Chest (Itemsanity)", jungleBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Iron Horse Armor (Itemsanity)", fortressExploration() & desertPyramidExploration(), ITEMSANITY)
+    smart_add_rule(world, "Golden Horse Armor (Itemsanity)", fortressExploration() & desertPyramidExploration(), ITEMSANITY)
+    smart_add_rule(world, "Diamond Horse Armor (Itemsanity)", fortressExploration() & desertPyramidExploration(), ITEMSANITY)
     smart_add_rule(world, "Enchanted Golden Apple (Itemsanity)", ancientCityExploration() & bastionRemnantExploration() & desertPyramidExploration() & ruinedPortalExploration() & mansionExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Thing Banner Pattern (Itemsanity)", ancientCityExploration() & bastionRemnantExploration() & desertPyramidExploration() & ruinedPortalExploration() & mansionExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Goat Horn (Itemsanity)", pillagerOutpostExploration() | highlandBiomesExploration(), ITEMSANITY_EXPLORATION)
@@ -825,6 +877,9 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Deepslate Emerald Ore (Itemsanity)": RARE_ORE,
         "Diamond Ore (Itemsanity)": RARE_ORE
     },  canEnchant())
+    smart_add_rule(world, "Podzol (Itemsanity)", forestBiomesExploration() | jungleBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Brown Mushroom Block (Itemsanity)", forestBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Red Mushroom Block (Itemsanity)", forestBiomesExploration(), ITEMSANITY)
     smart_add_rule(world, "Sculk (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Sculk Vein (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Sculk Catalyst (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
@@ -868,6 +923,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     create_region(world, "NetherAccess", "HasBrewing", {
         "Brewing Stand (Itemsanity)": ITEMSANITY
     },  canBrew())
+    smart_add_rule(world, "Brewing Stand (Itemsanity)", fortressExploration() | villageExploration(), ITEMSANITY)
 
     # REQUIRES SPYGLASS
     create_region(world, "CanSmeltItems", "HasSpyglass", {
@@ -972,6 +1028,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Carved Pumpkin (Itemsanity)": ITEMSANITY,
         "Jack o'Lantern (Itemsanity)": ITEMSANITY,
     },  canUseShears())
+    smart_add_rule(world, "Dead Bush (Itemsanity)", aridBiomesExploration(), ITEMSANITY)
     smart_add_rule(world, "Small Dripleaf (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     # REQUIRES MISC CRAFTING
@@ -1028,6 +1085,10 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
 
         "Mycelium (Itemsanity)": ITEMSANITY_EXPLORATION
     },  canSwim() & canEnchant())
+    smart_add_rule(world, "Zombie Head (Itemsanity)", weatherControl(), MOB_HEADS)
+    smart_add_rule(world, "Skeleton Skull (Itemsanity)", weatherControl(), MOB_HEADS)
+    smart_add_rule(world, "Creeper Head (Itemsanity)", weatherControl(), MOB_HEADS)
+    smart_add_rule(world, "Creeper Charge Banner Pattern (Itemsanity)", weatherControl(), MOB_HEADS)
     smart_add_rule(world, "Mycelium (Itemsanity)", plainsBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     create_region(world, "HasSwimAndEnchanting", "HasSwimAndEnchantingandOceans", {
@@ -1078,7 +1139,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Explorer Pottery Sherd (Itemsanity)": SHERD,
         "Mourner Pottery Sherd (Itemsanity)": SHERD,
         "Plenty Pottery Sherd (Itemsanity)": SHERD
-    },  canSwim() & canUseBrush())
+    },  canSwim() & canUseBrush() & ruinsExploration())
 
     # REQUIRES SWIMMING & SHEARS
     create_region(world, "HasShears", "HasSwimAndShears", {
@@ -1112,7 +1173,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Dead Bubble Coral Block (Itemsanity)": ITEMSANITY,
         "Dead Fire Coral Block (Itemsanity)": ITEMSANITY,
         "Dead Horn Coral Block (Itemsanity)": ITEMSANITY
-    },  canSmelt() & canSwim())
+    },  canSmelt() & canSwim() & oceanBiomesExploration())
 
     # REQUIRES SHEARS & COMPACTING
     create_region(world, "CanSmeltItems", "HasShearsAndCompacting", {
@@ -1144,6 +1205,8 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
 
         "Bucket of Tadpole (Itemsanity)": ITEMSANITY_EXPLORATION
     },  canUseBucket() & canSwim())
+    smart_add_rule(world, "Bucket of Pufferfish (Itemsanity)", oceanBiomesExploration(), ITEMSANITY)
+    smart_add_rule(world, "Bucket of Tropical Fish (Itemsanity)", oceanBiomesExploration(), ITEMSANITY)
     smart_add_rule(world, "Bucket of Tadpole (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     # REQUIRES SMELT & SWIM
@@ -1290,6 +1353,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Cobweb (Itemsanity)": ITEMSANITY_EXPLORATION
     },  canUseShears() | canEnchant())
     smart_add_rule(world, "Jungle Leaves (Itemsanity)", jungleBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Acacia Leaves (Itemsanity)", savannaBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Cherry Leaves (Itemsanity)", highlandBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Dark Oak Leaves (Itemsanity)", forestBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Mangrove Leaves (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
@@ -1444,7 +1508,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Yellow Shulker Box (Itemsanity)": DYE,
         "Blue Shulker Box (Itemsanity)": DYE,
         "White Shulker Box (Itemsanity)": DYE
-    },  canDyeBasic() & canAccessChests() & canAccessEnd())
+    },  canDyeBasic() & canAccessChests() & canAccessEnd() & endCityExploration())
 
     # Black Dye
     create_region(world, "RegularDye", "BlackDye", {
@@ -1492,7 +1556,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     create_region(world, "RegularDye", "BlackDyeAndShulker", {
         "Black Shulker Box (Itemsanity)": DYE,
         "Gray Shulker Box (Itemsanity)": DYE
-    },  canDyeBlack() & canAccessChests() & canAccessEnd())
+    },  canDyeBlack() & canAccessChests() & canAccessEnd() & endCityExploration())
 
     # Green Dye & Smelt
     create_region(world, "RegularDye", "GreenDyeAndSmelt", {
@@ -1521,7 +1585,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     # Green Dye & End & Chests
     create_region(world, "RegularDye", "GreenDyeAndShulker", {
         "Green Shulker Box (Itemsanity)": DYE_AND_EXPLORATION
-    },  canAccessChests() & canAccessEnd() & canDyeGreen())
+    },  canAccessChests() & canAccessEnd() & canDyeGreen() & endCityExploration())
 
     # Full Dye
     create_region(world, "RegularDye", "FullDye", {
@@ -1656,7 +1720,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Brown Shulker Box (Itemsanity)": DYE_AND_EXPLORATION,
         "Pink Shulker Box (Itemsanity)": DYE,
         "Magenta Shulker Box (Itemsanity)": DYE
-    },  canDyeFull() & canAccessChests() & canAccessEnd())
+    },  canDyeFull() & canAccessChests() & canAccessEnd() & endCityExploration())
     smart_add_rule(world, "Brown Shulker Box (Itemsanity)", jungleBiomesExploration(), DYE_AND_EXPLORATION)
 
     # Lime & Cyan Dye & Smelt
@@ -1700,7 +1764,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     create_region(world, "RegularDye", "LimeAndCyanDyeAndShulker", {
         "Lime Shulker Box (Itemsanity)": DYE_AND_EXPLORATION,
         "Cyan Shulker Box (Itemsanity)": DYE_AND_EXPLORATION
-    },  canDyeFull() & canAccessChests() & canAccessEnd() & canDyeGreen())
+    },  canDyeFull() & canAccessChests() & canAccessEnd() & canDyeGreen() & endCityExploration())
 
     # Can Smelt & Compact
     create_region(world, "CanSmeltItems", "CanSmeltItemsAndCompact", {
@@ -1717,6 +1781,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Bamboo Hanging Sign (Itemsanity)": ITEMSANITY_EXPLORATION
     },  canCompactResources() & canGetIron())
     smart_add_rule(world, "Jungle Hanging Sign (Itemsanity)", jungleBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Acacia Hanging Sign (Itemsanity)", savannaBiomesExploration(), ITEMSANITY)
     smart_add_rule(world, "Cherry Hanging Sign (Itemsanity)", highlandBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Dark Oak Hanging Sign (Itemsanity)", forestBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Mangrove Hanging Sign (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
