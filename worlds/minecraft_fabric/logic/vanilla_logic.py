@@ -62,7 +62,7 @@ def hasTNT():
 # ABILITY CHECKS #######################################################################################################
 
 def canTrade():
-    return Has("Villager Trading")
+    return Has("Villager Trading") & villageExploration()
 
 def canBarter():
     return Has("Piglin Bartering") & canAccessNether() & canGetGold()
@@ -202,7 +202,7 @@ def canPlaceBeacon():
 def canGetPrismarine():
     createMethod = canUseStoneTools() & canHauntCreate()
 
-    return canSwim() | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
+    return (canSwim() & monumentExploration()) | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
 def canGetObsidian():
     createMethod = hasFanCreate() & canSwim()
@@ -248,10 +248,10 @@ def canDyeGreen():
     return (canSmelt() & aridBiomesExploration()) | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
 def canGetUpgradeTemplate():
-    return canAccessNether() & canAccessChests()
+    return canAccessNether() & canAccessChests() & bastionRemnantExploration()
 
 def canCureZombieVillager():
-    return canBrew() & (canAccessNether() | canUseIronTools())
+    return canBrew() & (canAccessNether() | canUseIronTools()) & villageExploration()
 
 def canGetSmoothStone():
     return canSmelt() | canEnchant()
@@ -289,42 +289,99 @@ def canCompleteRubyHunt():
 
     return Has("Ruby", count=RubyCount()) & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True)
 
+# EXPLORATION
+
+def canExplore():
+    return Filtered(optionalRequireJump() & optionalRequireSprint() & canSwim(), options=[OptionFilter(LogicDifficultyOptions, "Movement Before Exploration", operator="contains")], filtered_resolution=True) & Filtered(canSleep(), options=[OptionFilter(LogicDifficultyOptions, "Sleeping Before Exploration", operator="contains")], filtered_resolution=True)
+
 # BIOME CHECKS
 def oceanBiomesExploration():
-    return Has("Ocean Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Ocean Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def plainsBiomesExploration():
-    return Has("Plains Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Plains Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def savannaBiomesExploration():
-    return Has("Savanna Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Savanna Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def forestBiomesExploration():
-    return Has("Forest Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Forest Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def jungleBiomesExploration():
-    return Has("Jungle Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Jungle Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def wetlandBiomesExploration():
-    return Has("Wetland Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Wetland Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def mountainBiomesExploration():
-    return Has("Mountain Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Mountain Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def highlandBiomesExploration():
-    return Has("Highland Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Highland Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def aridBiomesExploration():
-    return Has("Arid Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Arid Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def undergroundBiomesExploration():
-    return Has("Underground Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Underground Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def netherBiomesExploration():
-    return Has("Nether Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("Nether Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
 
 def endBiomesExploration():
-    return Has("End Biomes", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True)
+    return Has("End Biomes (Nature's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Natures Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+# STRUCTURE CHECKS
+
+def villageExploration():
+    return Has("Village (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def ruinsExploration():
+    return Has("Ruins (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def ruinedPortalExploration():
+    return Has("Ruined Portal (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def shipwreckExploration():
+    return Has("Shipwreck (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def buriedTreasureExploration():
+    return Has("Buried Treasure (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def mineshaftExploration():
+    return Has("Mineshaft (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def monumentExploration():
+    return Has("Monument (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def endCityExploration():
+    return Has("End City (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def desertPyramidExploration():
+    return Has("Desert Pyramid (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def junglePyramidExploration():
+    return Has("Jungle Pyramid (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def pillagerOutpostExploration():
+    return Has("Pillager Outpost (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def fortressExploration():
+    return Has("Fortress (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def bastionRemnantExploration():
+    return Has("Bastion Remnant (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def mansionExploration():
+    return Has("Mansion (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+def ancientCityExploration():
+    return Has("Ancient City (Explorer's Compass)", options=[OptionFilter(LogicDifficultyOptions, "Explorers Compass Logic", operator="contains")], filtered_resolution=True) & canExplore()
+
+# WEATHER
+
+def weatherControl():
+    return Has("Totem of Meteorology", options=[OptionFilter(LogicDifficultyOptions, "Meteorology", operator="contains")], filtered_resolution=True)
 
 
 ########################################################################################################################

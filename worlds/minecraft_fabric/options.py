@@ -319,12 +319,31 @@ class TimeSavingOptions(OptionSet):
     }
 
 class LogicDifficultyOptions(OptionSet):
+    """
+        Changes the logical requirements of certain locations to make progression easier
+    
+        Options:
+            "Natures Compass Logic" - Locks exploration checks that depend on rare biomes behind the ability
+            to locate that biome with Nature's Compass (Requires Nature's Compass Mod)
+            "Explorers Compass Logic" - Locks exploration checks that depend on rare structures behind the ability
+            to locate that structure with Explorer's Compass (Requires Explorer's Compass Mod)
+            "Movement Before Exploration" - Requires Jump, Sprint, Swim for checks that require exploration
+            "Sleeping Before Exploration" - Requires Sleeping for checks that require exploration
+            "Meteorology" - Requires the Totem of Meteorology (a custom item that allows manual weather setting) for
+            checks that require thunder
+        """
     display_name = "Logic Difficulty Options"
     default = {
-        "Natures Compass Logic"
+        "Movement Before Exploration",
+        "Sleeping Before Exploration",
+        "Meteorology"
     }
     valid_keys = {
-        "Natures Compass Logic"
+        "Natures Compass Logic",
+        "Explorers Compass Logic",
+        "Movement Before Exploration",
+        "Sleeping Before Exploration",
+        "Meteorology"
     }
 
 ########################################################################################################################

@@ -34,6 +34,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Sneak 100": ADVANCEMENT_EXPLORATION,
         "It Spreads": ADVANCEMENT_EXPLORATION
     })
+    smart_add_rule(world, "You've Got a Friend in Me", pillagerOutpostExploration(), ADVANCEMENT_EXPLORATION)
     smart_add_rule(world, "Whatever Floats Your Goat!", mountainBiomesExploration() | highlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
     smart_add_rule(world, "Sneak 100", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
     smart_add_rule(world, "It Spreads", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
@@ -165,6 +166,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "When Pigs Fly": ADVANCEMENT,
         "Overpowered": ADVANCEMENT_EXPLORATION
     }, canAccessChests())
+    smart_add_rule(world, "Overpowered", ancientCityExploration() & bastionRemnantExploration() & desertPyramidExploration & ruinedPortalExploration() & mansionExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES TRADING
     create_region(world, "Menu", "HasTrading", {
@@ -178,6 +180,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Total Beelocation": ADVANCEMENT,
         "Surge Protector": ADVANCEMENT_HARD
     }, canEnchant())
+    smart_add_rule(world, "Surge Protector", weatherControl(), ADVANCEMENT_HARD)
 
     # REQUIRES BUCKET
     create_region(world, "CanSmeltItems", "HasBucket", {
@@ -191,6 +194,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     create_region(world, "HasBucket", "HasBucketAndIronTools", {
         "Birthday Song": ADVANCEMENT_EXPLORATION
     }, canUseBucket() & canUseIronTools())
+    smart_add_rule(world, "Birthday Song", pillagerOutpostExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES BREWING
     create_region(world, "NetherAccess", "HasBrewing", {
@@ -254,6 +258,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Hero of the Village": ADVANCEMENT,
         "Postmortal": ADVANCEMENT_EXPLORATION
     }, canFightRaid())
+    smart_add_rule(world, "Postmortal", pillagerOutpostExploration(), ADVANCEMENT_EXPLORATION)
 
     ####################################################################################################################
     # MULTIPLE CHECKS ##################################################################################################
@@ -274,6 +279,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     create_region(world, "HasEnchanting", "HasSwimAndEnchanting", {
         "Very Very Frightening": ADVANCEMENT_HARD
     }, canSwim() & canEnchant())
+    smart_add_rule(world, "Very Very Frightening", weatherControl(), ADVANCEMENT_HARD)
 
     # REQUIRES SWIMMING & BRUSH
     create_region(world, "HasBrush", "HasSwimAndBrush", {
