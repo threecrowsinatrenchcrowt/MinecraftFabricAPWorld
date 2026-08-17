@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from worlds.minecraft_fabric.region.mc_regions_consts import *
-from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect
+from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect, smart_add_rule
 from worlds.minecraft_fabric.logic.vanilla_logic import *
 
 
@@ -21,6 +21,7 @@ def create_ironchests_itemsanity_regions(world: FabricMinecraftWorld):
         "Iron Chest Upgrade (Itemsanity) {Iron Chests: Restocked}": ITEMSANITY,
         "Iron Dolly (Itemsanity) {Iron Chests: Restocked}": ITEMSANITY_EXPLORATION,
     }, canGetIron())
+    smart_add_rule(world, "Iron Dolly (Itemsanity) {Iron Chests: Restocked}", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     # Has Smelting & Storage
     create_region(world, "HasSmelting", "HasSmeltingAndStorage", {
@@ -71,6 +72,7 @@ def create_ironchests_itemsanity_regions(world: FabricMinecraftWorld):
         "Diamond Chest Upgrade (Itemsanity) {Iron Chests: Restocked}": ITEMSANITY,
         "Diamond Dolly (Itemsanity) {Iron Chests: Restocked}": ITEMSANITY_EXPLORATION,
     }, canUseIronTools() & canGetGold())
+    smart_add_rule(world, "Diamond Dolly (Itemsanity) {Iron Chests: Restocked}", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     # Netherite Chest Upgrade
     create_region(world, "HasGoldAndIronTools", "NetheriteChest", {
