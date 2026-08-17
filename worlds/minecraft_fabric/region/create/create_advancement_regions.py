@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect
+from worlds.minecraft_fabric.region.regions_helper import create_locations_and_connect, smart_add_rule
 from worlds.minecraft_fabric.logic.create_logic import *
 from worlds.minecraft_fabric.region.mc_regions_consts import *
 
@@ -202,6 +202,7 @@ def create_create_advancement_regions(world: FabricMinecraftWorld):
     create_region(world, "Packager", "PackagerAndBucket", {
         "Hungry hoppers {Create}": ADVANCEMENT_EXPLORATION
     }, canUsePackager() & canUseBucket())
+    smart_add_rule(world, "Hungry hoppers {Create}", wetlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # Has Water Wheel & Bucket
     create_region(world, "WaterWheel", "WaterWheelAndBucket", {

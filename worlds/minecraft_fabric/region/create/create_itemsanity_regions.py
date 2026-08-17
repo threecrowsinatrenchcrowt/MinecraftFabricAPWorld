@@ -139,6 +139,8 @@ def create_create_itemsanity_regions(world: FabricMinecraftWorld):
         "Sticky Mechanical Piston (Itemsanity) {Create}": ITEMSANITY_EXPLORATION,
         "Sticker (Itemsanity) {Create}": ITEMSANITY_EXPLORATION
     }, canCraftAndesiteAlloy() & canUseIronTools())
+    smart_add_rule(world, "Sticky Mechanical Piston (Itemsanity) {Create}", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Sticker (Itemsanity) {Create}", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     # Has Cogs
     create_region(world, "AndesiteAlloy", "Cogs", {
@@ -189,6 +191,7 @@ def create_create_itemsanity_regions(world: FabricMinecraftWorld):
         "Super Glue (Itemsanity) {Create}": ITEMSANITY_EXPLORATION,
         "Metal Girder (Itemsanity) {Create}": ITEMSANITY
     }, hasPress())
+    smart_add_rule(world, "Super Glue (Itemsanity) {Create}", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
 
     # Has Press & Iron Tools
     create_region(world, "Press", "PressAndIronTools", {
@@ -378,6 +381,8 @@ def create_create_itemsanity_regions(world: FabricMinecraftWorld):
         "Package Frogport (Itemsanity) {Create}": ITEMSANITY_EXPLORATION,
         "Stock Link (Itemsanity) {Create}": ITEMSANITY_EXPLORATION
     }, hasPress() & canAccessChests())
+    smart_add_rule(world, "Package Frogport (Itemsanity) {Create}", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
+    # Why is Stock Link exploration?
 
     # Has Percision Mechanism & Storage
     create_region(world, "Brass", "PercisionMechanismAndStorage", {
@@ -901,6 +906,7 @@ def create_create_itemsanity_regions(world: FabricMinecraftWorld):
         "Pink Valve Handle (Itemsanity) {Create}": DYE,
         "Magenta Valve Handle (Itemsanity) {Create}": DYE
     }, canDyeFull() & hasPress())
+    smart_add_rule(world, "Brown Valve Handle (Itemsanity) {Create}", jungleBiomesExploration(), DYE_AND_EXPLORATION)
 
     # Lime & Cyan Dye & Press
     create_region(world, "AndesiteAlloy", "LimeAndCyanDyeAndPress", {
@@ -940,6 +946,7 @@ def create_create_itemsanity_regions(world: FabricMinecraftWorld):
         "Pink Postbox (Itemsanity) {Create}": DYE,
         "Magenta Postbox (Itemsanity) {Create}": DYE
     }, canDyeFull() & canAccessChests())
+    smart_add_rule(world, "Brown Postbox (Itemsanity) {Create}", jungleBiomesExploration(), DYE_AND_EXPLORATION)
 
     # Lime & Cyan Dye & Storage
     create_region(world, "AndesiteAlloy", "LimeAndCyanDyeAndStorageAndAlloy", {
@@ -994,6 +1001,8 @@ def create_create_itemsanity_regions(world: FabricMinecraftWorld):
         "Pink Seat (Itemsanity) {Create}": DYE,
         "Magenta Seat (Itemsanity) {Create}": DYE
     }, canDyeFull())
+    smart_add_rule(world, "Brown Table Cloth (Itemsanity) {Create}", jungleBiomesExploration(), DYE_AND_EXPLORATION)
+    smart_add_rule(world, "Brown Seat (Itemsanity) {Create}", jungleBiomesExploration(), DYE_AND_EXPLORATION)
 
     # Lime & Cyan Dye
     create_region(world, "AndesiteAlloy", "LimeAndCyanDye", {
@@ -1034,6 +1043,7 @@ def create_create_itemsanity_regions(world: FabricMinecraftWorld):
         "Pink Toolbox (Itemsanity) {Create}": DYE,
         "Magenta Toolbox (Itemsanity) {Create}": DYE
     }, canDyeFull() & hasPress() & canAccessChests() & canGetGold())
+    smart_add_rule(world, "Brown Toolbox (Itemsanity) {Create}", jungleBiomesExploration(), DYE_AND_EXPLORATION)
 
     # Lime & Cyan Dye & Press & Storage & Gold
     create_region(world, "AndesiteAlloy", "LimeAndCyanDyeAndPressAndStorageAndGold", {
