@@ -166,7 +166,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "When Pigs Fly": ADVANCEMENT,
         "Overpowered": ADVANCEMENT_EXPLORATION
     }, canAccessChests())
-    smart_add_rule(world, "Overpowered", ancientCityExploration() & bastionRemnantExploration() & desertPyramidExploration & ruinedPortalExploration() & mansionExploration(), ADVANCEMENT_EXPLORATION)
+    smart_add_rule(world, "Overpowered", ancientCityExploration() & bastionRemnantExploration() & desertPyramidExploration() & ruinedPortalExploration() & mansionExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES TRADING
     create_region(world, "Menu", "HasTrading", {
