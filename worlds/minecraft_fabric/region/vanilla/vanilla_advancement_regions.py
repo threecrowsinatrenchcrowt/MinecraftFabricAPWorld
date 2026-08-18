@@ -34,8 +34,9 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Sneak 100": ADVANCEMENT_EXPLORATION,
         "It Spreads": ADVANCEMENT_EXPLORATION
     })
+    smart_add_rule(world, "Voluntary Exile", pillagerOutpostExploration(), ADVANCEMENT)
     smart_add_rule(world, "You've Got a Friend in Me", pillagerOutpostExploration(), ADVANCEMENT_EXPLORATION)
-    smart_add_rule(world, "When the Squad Hops into Town", wetlandBiomesExploration(), ADVANCEMENT_HARD)
+    smart_add_rule(world, "When the Squad Hops into Town", wetlandBiomesExploration() & canUseBucket(), ADVANCEMENT_HARD)
     smart_add_rule(world, "Whatever Floats Your Goat!", mountainBiomesExploration() | highlandBiomesExploration(), ADVANCEMENT_EXPLORATION)
     smart_add_rule(world, "Sneak 100", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
     smart_add_rule(world, "It Spreads", undergroundBiomesExploration(), ADVANCEMENT_EXPLORATION)
