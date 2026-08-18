@@ -251,6 +251,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     smart_add_rule(world, "Rose Bush (Itemsanity)", forestBiomesExploration(), FLOWER)
     smart_add_rule(world, "Peony (Itemsanity)", forestBiomesExploration(), FLOWER)
     smart_add_rule(world, "Mushroom Stew (Itemsanity)", forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether(), ITEMSANITY)
+    smart_add_rule(world, "Cookie (Itemsanity)", jungleBiomesExploration() | villageExploration(), ITEMSANITY)
     smart_add_rule(world, "Fermented Spider Eye (Itemsanity)", forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether(), ITEMSANITY)
     smart_add_rule(world, "Carrot (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
     smart_add_rule(world, "Potato (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
@@ -486,6 +487,9 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Verdant Froglight (Itemsanity)": ITEMSANITY_HARD,
         "Pearlescent Froglight (Itemsanity)": ITEMSANITY_HARD
     },  canAccessNether())
+    smart_add_rule(world, "Blaze Rod (Itemsanity)", fortressExploration(), ITEMSANITY)
+    smart_add_rule(world, "Nether Wart (Itemsanity)", fortressExploration() | bastionRemnantExploration(), ITEMSANITY)
+    smart_add_rule(world, "Blaze Powder (Itemsanity)", fortressExploration(), ITEMSANITY)
     smart_add_rule(world, "Ochre Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
     smart_add_rule(world, "Verdant Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
     smart_add_rule(world, "Pearlescent Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
@@ -923,7 +927,6 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     create_region(world, "NetherAccess", "HasBrewing", {
         "Brewing Stand (Itemsanity)": ITEMSANITY
     },  canBrew())
-    smart_add_rule(world, "Brewing Stand (Itemsanity)", fortressExploration() | villageExploration(), ITEMSANITY)
 
     # REQUIRES SPYGLASS
     create_region(world, "CanSmeltItems", "HasSpyglass", {

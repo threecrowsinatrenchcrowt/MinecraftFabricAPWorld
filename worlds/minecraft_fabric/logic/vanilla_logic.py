@@ -82,7 +82,7 @@ def canSmith():
     return canGetIron() & Has("Smithing")
 
 def canBrew():
-    return canAccessNether() & canUseBottles() & Has("Brewing")
+    return canAccessNether() & canUseBottles() & Has("Brewing") & (fortressExploration() | villageExploration())
 
 def canEnchant():
     return canGetObsidian() & Has("Enchanting") & canCompactResources()
@@ -176,7 +176,7 @@ def canCompactResources():
     return Has("Resource Compacting Recipes")
 
 def canGetEyesOfEnder():
-    return canAccessNether() & Has("Eye of Ender Recipes")
+    return canAccessNether() & fortressExploration() & Has("Eye of Ender Recipes")
 
 def canGetAndUseArmorTrims():
     return canSmith() & canAccessChests() & canWearLeatherArmor()
@@ -207,7 +207,7 @@ def canGetPrismarine():
 def canGetObsidian():
     createMethod = hasFanCreate() & canSwim()
 
-    return canUseDiamondTools() | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
+    return (canUseDiamondTools() & (ruinedPortalExploration() | canUseBucket())) | Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=False)
 
 def canGetMud():
     createMethod = hasMixerCreate() & canFillFluidWaterCreate()
@@ -251,7 +251,7 @@ def canGetUpgradeTemplate():
     return canAccessNether() & canAccessChests() & bastionRemnantExploration()
 
 def canCureZombieVillager():
-    return canBrew() & (canAccessNether() | canUseIronTools()) & villageExploration() & (canAccessNether() | wetlandBiomesExploration() | forestBiomesExploration())
+    return canBrew() & canUseIronTools() & villageExploration() & (canAccessNether() | wetlandBiomesExploration() | forestBiomesExploration())
 
 def canGetSmoothStone():
     return canSmelt() | canEnchant()
