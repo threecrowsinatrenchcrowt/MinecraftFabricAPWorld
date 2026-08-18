@@ -278,7 +278,7 @@ def canGoalEnderDragon():
     return canAccessEnd()
 
 def canGoalWither():
-    return (canAccessNether() & Has("Wither Summoning")
+    return (canAccessNether() & fortressExploration() & Has("Wither Summoning")
             & getDifficultyRequirements(ShouldHaveBeforeWitherOrDragon))
 
 def canBeatDragonAndWither():

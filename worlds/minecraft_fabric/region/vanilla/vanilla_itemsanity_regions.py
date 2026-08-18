@@ -247,6 +247,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     smart_add_rule(world, "Spore Blossom (Itemsanity)", undergroundBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Azalea (Itemsanity)", undergroundBiomesExploration() | shipwreckExploration(), ITEMSANITY)
     smart_add_rule(world, "Flowering Azalea (Itemsanity)", undergroundBiomesExploration() | shipwreckExploration(), ITEMSANITY)
+    smart_add_rule(world, "Melon (Itemsanity)", jungleBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Lilac (Itemsanity)", forestBiomesExploration(), FLOWER)
     smart_add_rule(world, "Rose Bush (Itemsanity)", forestBiomesExploration(), FLOWER)
     smart_add_rule(world, "Peony (Itemsanity)", forestBiomesExploration(), FLOWER)
@@ -490,6 +491,8 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     smart_add_rule(world, "Blaze Rod (Itemsanity)", fortressExploration(), ITEMSANITY)
     smart_add_rule(world, "Nether Wart (Itemsanity)", fortressExploration() | bastionRemnantExploration(), ITEMSANITY)
     smart_add_rule(world, "Blaze Powder (Itemsanity)", fortressExploration(), ITEMSANITY)
+    smart_add_rule(world, "Wither Skeleton Skull (Itemsanity)", fortressExploration(), ITEMSANITY)
+    smart_add_rule(world, "Skull Charge Banner Pattern (Itemsanity)", fortressExploration(), ITEMSANITY)
     smart_add_rule(world, "Ochre Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
     smart_add_rule(world, "Verdant Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
     smart_add_rule(world, "Pearlescent Froglight (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
@@ -573,7 +576,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     },  canSmelt())
     smart_add_rule(world, "Baked Potato (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
     smart_add_rule(world, "Cooked Rabbit (Itemsanity)", highlandBiomesExploration(), ITEMSANITY)
-    smart_add_rule(world, "Rabbit Stew (Itemsanity)", highlandBiomesExploration() & (forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether()), ITEMSANITY)
+    smart_add_rule(world, "Rabbit Stew (Itemsanity)", highlandBiomesExploration() & (forestBiomesExploration() | wetlandBiomesExploration() | canAccessNether()) & (villageExploration() | shipwreckExploration()), ITEMSANITY)
 
     # CAN GET IRON
     create_region(world, "HasStoneTools", "CanSmeltItemsIron", {
@@ -644,6 +647,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Golden Carrot (Itemsanity)": ITEMSANITY
     },  canGetGoldNugget())
     smart_add_rule(world, "Glistering Melon Slice (Itemsanity)", jungleBiomesExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Golden Carrot (Itemsanity)", villageExploration() | shipwreckExploration(), ITEMSANITY)
 
     # REQUIRES IRON WEAPONS
     create_region(world, "CanSmeltItems", "HasIronWeapons", {
@@ -825,10 +829,13 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     smart_add_rule(world, "Diamond Horse Armor (Itemsanity)", fortressExploration() & desertPyramidExploration(), ITEMSANITY)
     smart_add_rule(world, "Enchanted Golden Apple (Itemsanity)", ancientCityExploration() & bastionRemnantExploration() & desertPyramidExploration() & ruinedPortalExploration() & mansionExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Thing Banner Pattern (Itemsanity)", ancientCityExploration() & bastionRemnantExploration() & desertPyramidExploration() & ruinedPortalExploration() & mansionExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Tall Grass (Itemsanity)", villageExploration(), ITEMSANITY_UNREASONABLE)
+    smart_add_rule(world, "Large Fern (Itemsanity)", villageExploration(), ITEMSANITY_UNREASONABLE)
     smart_add_rule(world, "Goat Horn (Itemsanity)", pillagerOutpostExploration() | highlandBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Echo Shard (Itemsanity)", ancientCityExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Music Disc 5 (Itemsanity)", ancientCityExploration(), DISCS)
     smart_add_rule(world, "Disc 5 Fragment (Itemsanity)", ancientCityExploration(), DISCS)
+    smart_add_rule(world, "Music Disc Otherside (Itemsanity)", ancientCityExploration(), DISCS)
     smart_add_rule(world, "Sentry Armor Trim (Itemsanity)", pillagerOutpostExploration(), TRIM)
     smart_add_rule(world, "Dune Armor Trim (Itemsanity)", desertPyramidExploration(), TRIM)
     smart_add_rule(world, "Vex Armor Trim (Itemsanity)", mansionExploration(), TRIM)
@@ -968,6 +975,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Wet Sponge (Itemsanity)": ITEMSANITY_EXPLORATION,
         "Tide Armor Trim (Itemsanity)": TRIM
     },  canSwim())
+    smart_add_rule(world, "Sea Pickle (Itemsanity)", oceanBiomesExploration(), ITEMSANITY)
     smart_add_rule(world, "Lily Pad (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_EXPLORATION)
     smart_add_rule(world, "Dark Prismarine Slab (Itemsanity)", monumentExploration(), SLAB_AND_EXPLORATION)
     smart_add_rule(world, "Dark Prismarine (Itemsanity)", monumentExploration(), ITEMSANITY_EXPLORATION)
@@ -1158,7 +1166,10 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Heart of the Sea (Itemsanity)": ITEMSANITY_EXPLORATION,
         "Conduit (Itemsanity)": ITEMSANITY_EXPLORATION,
         "Coast Armor Trim (Itemsanity)": TRIM
-    },  canAccessChests() & canSwim() & shipwreckExploration())
+    },  canAccessChests() & canSwim())
+    smart_add_rule(world, "Heart of the Sea (Itemsanity)", buriedTreasureExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Conduit (Itemsanity)", buriedTreasureExploration(), ITEMSANITY_EXPLORATION)
+    smart_add_rule(world, "Coast Armor Trim (Itemsanity)", shipwreckExploration(), TRIM)
 
     # REQUIRES EYES OF ENDER & CHESTS
     create_region(world, "HasChests", "HasChestsAndEyesOfEnder", {
@@ -1335,6 +1346,10 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Nether Brick (Itemsanity)": ITEMSANITY,
         "Cracked Polished Blackstone Bricks (Itemsanity)": ITEMSANITY
     },  canAccessNether() & canSmelt())
+    smart_add_rule(world, "Red Nether Brick Wall (Itemsanity)", fortressExploration() | bastionRemnantExploration(), WALL)
+    smart_add_rule(world, "Red Nether Brick Stairs (Itemsanity)", fortressExploration() | bastionRemnantExploration(), STAIR)
+    smart_add_rule(world, "Red Nether Brick Slab (Itemsanity)", fortressExploration() | bastionRemnantExploration(), SLAB)
+    smart_add_rule(world, "Red Nether Bricks (Itemsanity)", fortressExploration() | bastionRemnantExploration(), ITEMSANITY)
 
     # REQUIRES NETHER & SMELTING & IRON TOOLS
     create_region(world, "NetherAccessAndSmelting", "NetherAccessAndSmeltingAndIronTools", {

@@ -56,6 +56,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Hot Tourist Destinations": ADVANCEMENT_EXPLORATION
     }, canAccessNether())
     smart_add_rule(world, "Those Were the Days", bastionRemnantExploration(), ADVANCEMENT)
+    smart_add_rule(world, "Spooky Scary Skeleton", fortressExploration(), ADVANCEMENT)
     smart_add_rule(world, "A Terrible Fortress", fortressExploration(), ADVANCEMENT)
     smart_add_rule(world, "Hot Tourist Destinations", netherBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
@@ -70,6 +71,9 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
        "Eye Spy": ADVANCEMENT,
        "The End?": ADVANCEMENT
     }, canAccessEnd())
+    smart_add_rule(world, "The City at the End of the Game", endCityExploration(), ADVANCEMENT)
+    smart_add_rule(world, "Sky's the Limit", endCityExploration(), ADVANCEMENT)
+    smart_add_rule(world, "Great View From Up Here", endCityExploration(), ADVANCEMENT)
 
     # REQUIRES STONE TOOLS
     create_region(world, "Menu", "HasStoneTools", {
@@ -319,6 +323,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Tactical Fishing": ADVANCEMENT,
         "The Cutest Predator": ADVANCEMENT
     }, canUseBucket() & canSwim())
+    smart_add_rule(world, "The Cutest Predator", undergroundBiomesExploration(), ADVANCEMENT)
 
     # REQUIRES SPYGLASS & NETHER
     create_region(world, "HasSpyglass", "HasSpyglassNether", {
