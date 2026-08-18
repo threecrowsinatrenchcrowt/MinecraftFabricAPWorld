@@ -240,6 +240,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
         "Glow and Behold!": ADVANCEMENT,
         "The Healing Power of Friendship!": ADVANCEMENT
     }, canSwim())
+    smart_add_rule(world, "The Healing Power of Friendship!", undergroundBiomesExploration() & canUseBucket(), ADVANCEMENT)
 
     # REQUIRES WITHER SUMMONING
     create_region(world, "NetherAccess", "CanSummonWither", {

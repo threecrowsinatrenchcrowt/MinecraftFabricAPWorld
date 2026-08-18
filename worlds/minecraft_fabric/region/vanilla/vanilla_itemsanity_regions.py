@@ -1150,6 +1150,8 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
         "Scute (Itemsanity)": ITEMSANITY_HARD,
         "Turtle Shell (Itemsanity)": ITEMSANITY_UNREASONABLE
     },  canUseShears() & canSwim())
+    smart_add_rule(world, "Scute (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_HARD)
+    smart_add_rule(world, "Turtle Shell (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY_UNREASONABLE)
 
     # REQUIRES SWIMMING & CHESTS
     create_region(world, "HasSwim", "HasSwimAndChests", {
@@ -1801,6 +1803,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     create_region(world, "HasEnchanting", "HasEnchantingAndShears", {
         "Turtle Egg (Itemsanity)": ITEMSANITY
     },  canEnchant() & canUseShears())
+    smart_add_rule(world, "Turtle Egg (Itemsanity)", wetlandBiomesExploration(), ITEMSANITY)
 
     # Can Use Chests & Access Nether
     create_region(world, "NetherAccess", "NetherAccessAndChests", {
