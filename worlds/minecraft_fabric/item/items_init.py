@@ -70,6 +70,7 @@ def create_items(world: FabricMinecraftWorld):
         total_items = add_item_to_pool(world, "Bastion Remnant (Explorer's Compass)", total_items)
         total_items = add_item_to_pool(world, "Mansion (Explorer's Compass)", total_items)
         total_items = add_item_to_pool(world, "Ancient City (Explorer's Compass)", total_items)
+        total_items = add_item_to_pool(world, "Heart Crystal (Explorer's Compass)", total_items)
 
     if "Meteorology" in world.options.logic_difficulty_options.value:
         total_items = add_item_to_pool(world, "Totem of Meteorology", total_items)
