@@ -85,7 +85,7 @@ def canBrew():
     return canAccessNether() & canUseBottles() & Has("Brewing") & (fortressExploration() | villageExploration())
 
 def canEnchant():
-    return canGetObsidian() & Has("Enchanting") & canCompactResources()
+    return canGetObsidian() & Has("Enchanting") & canUseIronTools()
 
 def canAccessMiscJobsites():
     return Has("Other Crafting Stations")
@@ -229,7 +229,7 @@ def canCraftDriedKelp():
     return canSwim() & canSmelt()
 
 def canGetCryingObsidian():
-    return canBarter() | canUseDiamondTools()
+    return canBarter() | (canUseDiamondTools() & ruinedPortalExploration())
 
 def canDyeBasic():
     return Has("Progressive Dye Recipes")

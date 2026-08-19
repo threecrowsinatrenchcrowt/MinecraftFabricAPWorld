@@ -1009,7 +1009,7 @@ def create_vanilla_itemsanity_regions(world: FabricMinecraftWorld):
     },  canPlaceBeacon())
 
     # REQUIRES CRYING OBSIDIAN
-    create_region(world, "NetherAccess", "CanGetCryingObsidian", {
+    create_region(world, "Menu", "CanGetCryingObsidian", {
         "Crying Obsidian (Itemsanity)": ITEMSANITY,
         "Respawn Anchor (Itemsanity)": ITEMSANITY
     },  canGetCryingObsidian())

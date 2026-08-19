@@ -57,7 +57,9 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     }, canAccessNether())
     smart_add_rule(world, "Those Were the Days", bastionRemnantExploration(), ADVANCEMENT)
     smart_add_rule(world, "Spooky Scary Skeleton", fortressExploration(), ADVANCEMENT)
+    smart_add_rule(world, "Into Fire", fortressExploration(), ADVANCEMENT)
     smart_add_rule(world, "A Terrible Fortress", fortressExploration(), ADVANCEMENT)
+    smart_add_rule(world, "With Our Powers Combined!", wetlandBiomesExploration() & canUseBucket(), ADVANCEMENT_HARD)
     smart_add_rule(world, "Hot Tourist Destinations", netherBiomesExploration(), ADVANCEMENT_EXPLORATION)
 
     # REQUIRES END ACCESS
@@ -259,7 +261,7 @@ def create_vanilla_advancement_regions(world: FabricMinecraftWorld):
     }, canPlaceBeacon())
 
     # REQUIRES CRYING OBSIDIAN
-    create_region(world, "HasBartering", "CanGetCryingObsidian", {
+    create_region(world, "Menu", "CanGetCryingObsidian", {
         "Who is Cutting Onions?": ADVANCEMENT,
         "Not Quite \"Nine\" Lives": ADVANCEMENT
     }, canGetCryingObsidian())
