@@ -1,6 +1,6 @@
 {
     "game": "Minecraft Fabric",
     "authors": ["Deadlydiamond98", "ThreeCrows", "VoidedMoth"],
-    "world_version": "1.2.0",
+    "world_version": "1.2.1",
     "minimum_ap_version": "0.6.7"
 }

@@ -12,33 +12,33 @@ if TYPE_CHECKING:
 
 def create_healpgood_itemsanity_regions(world: FabricMinecraftWorld):
     create_locations_and_connect(world, "Menu", "MenuHealPGoodItemsanity", {
-        "Heart Crystal Sliver (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Heart Crystal Shard (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Heart Piece (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Heart Cookie (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Crystal Apple (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Empty Heart Container (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Music Disc Heartstep (Itemsanity) {Healing Pretty Good}": DISCS,
-        "Heart Crystal Block (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Polished Heart Crystal (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Polished Heart Crystal Stairs (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Polished Heart Crystal Slab (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Heart Crystal Bricks (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Heart Crystal Brick Stairs (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Heart Crystal Brick Slab (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD
+        "Heart Crystal Sliver (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Heart Crystal Shard (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Heart Piece (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Heart Cookie (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Crystal Apple (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Empty Heart Container (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Music Disc Heartstep (Itemsanity) (Healing Pretty Good)": DISCS,
+        "Heart Crystal Block (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Polished Heart Crystal (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Polished Heart Crystal Stairs (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Polished Heart Crystal Slab (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Heart Crystal Bricks (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Heart Crystal Brick Stairs (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Heart Crystal Brick Slab (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD
     }, canUseDiamondTools() & heartCrystalExploration())
 
     create_locations_and_connect(world, "Menu", "TradingHealPGoodItemsanity", {
-        "Bottle O' Healing (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD
+        "Bottle O' Healing (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD
     }, canTrade())
 
     create_region(world, "Menu", "HasNetherAccess", {
-        "Heart Lantern (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD,
-        "Crystal Heart (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD
+        "Heart Lantern (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD,
+        "Crystal Heart (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD
     }, canAccessNether() & heartCrystalExploration())
 
     create_region(world, "HasNetherAccess", "HasNetherAndEndAccess", {
-        "Heart Container (Itemsanity) {Healing Pretty Good}": ITEMSANITY_HARD
+        "Heart Container (Itemsanity) (Healing Pretty Good)": ITEMSANITY_HARD
     }, canAccessEnd() & heartCrystalExploration())
 
 

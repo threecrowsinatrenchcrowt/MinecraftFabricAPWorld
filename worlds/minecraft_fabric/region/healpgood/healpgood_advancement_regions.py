@@ -11,17 +11,17 @@ if TYPE_CHECKING:
 
 def create_healpgood_advancements_regions(world: FabricMinecraftWorld):
     create_locations_and_connect(world, "Menu", "MenuHealPGoodAdvancement", {
-        "Heart Breaker {Healing Pretty Good}": ADVANCEMENT_HARD,
-        "Heart Donor {Healing Pretty Good}": ADVANCEMENT_HARD
+        "Heart Breaker (Healing Pretty Good)": ADVANCEMENT_HARD,
+        "Heart Donor (Healing Pretty Good)": ADVANCEMENT_HARD
     }, canUseDiamondTools() & heartCrystalExploration())
 
     create_region(world, "Menu", "HasNetherAccess", {
-        "Heart-Side Unlocked {Healing Pretty Good}": ADVANCEMENT_HARD
+        "Heart-Side Unlocked (Healing Pretty Good)": ADVANCEMENT_HARD
     }, canAccessNether() & heartCrystalExploration())
 
     create_region(world, "HasNetherAccess", "HasNetherAndEndAccess", {
-        "Phanes Blessing {Healing Pretty Good}": ADVANCEMENT_HARD,
-        "Maxed Out {Healing Pretty Good}": ADVANCEMENT_UNREASONABLE
+        "Phanes Blessing (Healing Pretty Good)": ADVANCEMENT_HARD,
+        "Maxed Out (Healing Pretty Good)": ADVANCEMENT_UNREASONABLE
     }, canAccessEnd() & heartCrystalExploration())
 
 def create_region(world: FabricMinecraftWorld, region_name: str, new_region_name: str, locations: dict[str, int], rule=None):
