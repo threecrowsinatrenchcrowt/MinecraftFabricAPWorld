@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from Options import PerGameCommonOptions, Choice, Range, ItemSet, OptionSet, OptionGroup, Toggle
+from worlds.minecraft_fabric.location.minecraft_locations import location_table
 
 
 ########################################################################################################################
@@ -89,6 +90,7 @@ class RubyPercentageNeeded(Range):
 ########################################################################################################################
 # Itemsanity ###########################################################################################################
 ########################################################################################################################
+itemsanity_total = len([name for name, id in location_table.items() if "(Itemsanity)" in name])
 
 class Itemsanity(Toggle):
     """
@@ -109,7 +111,7 @@ class ItemsRequiredToGoal(Range):
     """
     display_name = "Items to Goal"
     range_start = 0
-    range_end = 1142
+    range_end = itemsanity_total
     default = 0
 
 class ItemsanityQuantity(Range):
@@ -119,8 +121,8 @@ class ItemsanityQuantity(Range):
     """
     display_name = "Itemsanity Location Count"
     range_start = 0
-    range_end = 1142
-    default = 1142
+    range_end = itemsanity_total
+    default = itemsanity_total
 
 class ItemsanityLocalFill(Range):
     """
