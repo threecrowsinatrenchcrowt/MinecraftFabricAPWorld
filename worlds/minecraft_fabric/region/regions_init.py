@@ -3,6 +3,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Optional
 
+from worlds.minecraft_fabric.location.create.create_itemsanity import create_itemsanity
+from worlds.minecraft_fabric.location.healpgood.healpgood_itemsanity import healpgood_itemsanity
+from worlds.minecraft_fabric.location.ironchests.ironchests_itemsanity import ironchests_itemsanity
+from worlds.minecraft_fabric.location.vanilla.vanilla_itemsanity import vanilla_itemsanity
 from worlds.minecraft_fabric.region.create.create_advancement_regions import create_create_advancement_regions
 from worlds.minecraft_fabric.region.create.create_itemsanity_regions import create_create_itemsanity_regions
 from worlds.minecraft_fabric.region.healpgood.healpgood_advancement_regions import create_healpgood_advancements_regions
@@ -36,6 +40,18 @@ def get_goal_condition(world):
 def create_regions(world: FabricMinecraftWorld):
     # Creates a Main Region for everything to branch from!
     create_locations_advanced(world, "Menu", {})
+
+    # Pick which itemsanity locations to use for itemsanity_quantity
+    world.chosen_itemsanity_locations = vanilla_itemsanity
+    if "create" in world.options.enabled_mods.value:
+        world.chosen_itemsanity_locations += create_itemsanity
+    if "healpgood" in world.options.enabled_mods.value:
+        world.chosen_itemsanity_locations += healpgood_itemsanity
+    if "ironchest" in world.options.enabled_mods.value:
+        world.chosen_itemsanity_locations += ironchests_itemsanity
+    itemsanity_quanity = min(len(world.chosen_itemsanity_locations), world.options.itemsanity_quantity.value)
+    world.chosen_itemsanity_locations = world.random.sample(world.chosen_itemsanity_locations, itemsanity_quanity)
+
     # Vanilla Regions
     create_vanilla_advancement_regions(world)
     create_vanilla_itemsanity_regions(world)

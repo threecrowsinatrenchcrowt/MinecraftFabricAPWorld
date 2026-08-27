@@ -60,12 +60,17 @@ def blacklisted_location(world: FabricMinecraftWorld, location_type: int):
 
     return False
 
+def is_excluded_itemsanity(world: FabricMinecraftWorld, location: str, location_type: int):
+    return location_type >= ITEMSANITY and location not in world.chosen_itemsanity_locations
+
 # Creates a Region with Locations, and Excludes Unused Locations based on settings
 def create_locations_advanced(world: FabricMinecraftWorld, region_name: str, locations: dict[str, int]):
    location_list = []
 
    for location, location_type in locations.items():
        if blacklisted_location(world, location_type):
+           continue
+       if is_excluded_itemsanity(world, location, location_type):
            continue
 
        location_list.append(location)
@@ -110,6 +115,8 @@ def create_locations_and_connect(world: FabricMinecraftWorld, region_name: str, 
 
 def smart_add_rule(world: FabricMinecraftWorld, location: str, rule: Rule, location_type: int):
     if blacklisted_location(world, location_type):
+        return
+    if is_excluded_itemsanity(world, location, location_type):
         return
     
     world.set_rule(world.get_location(location), rule)
