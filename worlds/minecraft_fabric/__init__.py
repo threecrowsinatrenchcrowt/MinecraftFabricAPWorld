@@ -30,6 +30,7 @@ class FabricMinecraftWorld(World):
         super().__init__(multiworld, player)
         self.max_ruby_count = 0
         self.itemsanity_locations = []
+        self.chosen_itemsanity_locations = []
         self.local_fill_amount = 0
 
     def create_regions(self):
