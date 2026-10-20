@@ -41,7 +41,7 @@ def create_regions(world: FabricMinecraftWorld):
     # Creates a Main Region for everything to branch from!
     create_locations_advanced(world, "Menu", {})
 
-    # Pick which itemsanity locations to use for itemsanity_quantity
+    # Pick which itemsanity locations to use for itemsanity_location_percentage
     world.chosen_itemsanity_locations = vanilla_itemsanity
     if "create" in world.options.enabled_mods.value:
         world.chosen_itemsanity_locations += create_itemsanity
@@ -49,8 +49,8 @@ def create_regions(world: FabricMinecraftWorld):
         world.chosen_itemsanity_locations += healpgood_itemsanity
     if "ironchest" in world.options.enabled_mods.value:
         world.chosen_itemsanity_locations += ironchests_itemsanity
-    itemsanity_quanity = min(len(world.chosen_itemsanity_locations), world.options.itemsanity_quantity.value)
-    world.chosen_itemsanity_locations = world.random.sample(world.chosen_itemsanity_locations, itemsanity_quanity)
+    itemsanity_quanity = floor(len(world.chosen_itemsanity_locations) * world.options.itemsanity_location_percentage.value / 100)
+    world.chosen_itemsanity_locations = world.random.sample(world.chosen_itemsanity_locations, min(itemsanity_quanity, len(world.chosen_itemsanity_locations)))
 
     # Vanilla Regions
     create_vanilla_advancement_regions(world)

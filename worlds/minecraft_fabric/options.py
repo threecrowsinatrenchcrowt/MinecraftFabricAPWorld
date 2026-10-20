@@ -114,15 +114,17 @@ class ItemsRequiredToGoal(Range):
     range_end = itemsanity_total
     default = 0
 
-class ItemsanityQuantity(Range):
+class ItemsanityLocationPercentage(Range):
     """
-    Determines the number of itemsanity locations to generate. Only the items that get randomly chosen will have an
+    Determines the percentage of possible itemsanity locations to generate. Only the items that get randomly chosen will have an
     associated location.
+
+    Note: If categories are excluded from itemsanity, this percentage will not be exact; there will be some randomness.
     """
-    display_name = "Itemsanity Location Count"
+    display_name = "Itemsanity Location Percentage"
     range_start = 0
-    range_end = itemsanity_total
-    default = itemsanity_total
+    range_end = 100
+    default = 100
 
 class ItemsanityLocalFill(Range):
     """
@@ -484,7 +486,7 @@ class FMCOptions(PerGameCommonOptions):
     # Sanity Options
     itemsanity: Itemsanity
     items_required_for_goal: ItemsRequiredToGoal
-    itemsanity_quantity: ItemsanityQuantity
+    itemsanity_location_percentage: ItemsanityLocationPercentage
     itemsanity_local_fill: ItemsanityLocalFill
     excluded_from_itemsanity: ExcludedFromItemsanity
     empty_fill_percentage: EmptyFillPercentage
@@ -520,7 +522,7 @@ option_groups = [
     ),
     OptionGroup(
         "Itemsanty Options",
-        [Itemsanity, ItemsRequiredToGoal, ItemsanityQuantity, ItemsanityLocalFill, ExcludedFromItemsanity, EmptyFillPercentage]
+        [Itemsanity, ItemsRequiredToGoal, ItemsanityLocationPercentage, ItemsanityLocalFill, ExcludedFromItemsanity, EmptyFillPercentage]
     ),
     OptionGroup(
         "Difficulty Options",
