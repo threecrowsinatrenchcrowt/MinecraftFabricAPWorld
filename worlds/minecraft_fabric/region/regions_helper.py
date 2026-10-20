@@ -83,7 +83,7 @@ def create_locations(world: FabricMinecraftWorld, region_name: str, locations: l
 
    for name in locations:
        location = Location(world.player, name, location_table[name], region)
-       if name.endswith("(Itemsanity)"):
+       if "(Itemsanity)" in name:
           world.itemsanity_locations.append(name)
        region.locations.append(location)
 

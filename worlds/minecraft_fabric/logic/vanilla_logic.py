@@ -26,10 +26,11 @@ from BaseClasses import CollectionState
 
 # DIFFICULTY CHECK #####################################################################################################
 
-def getDifficultyRequirements(required_options):
+def getDifficultyRequirements(required_options, nether_unavailable: bool = False):
     required = True_()
     required = required & Filtered(canUseIronWeapons(), options=[OptionFilter(required_options, "Iron Weapons", operator="contains")], filtered_resolution=True)
     required = required & Filtered(canWearIronArmor(), options=[OptionFilter(required_options, "Iron Armor", operator="contains")], filtered_resolution=True)
+    required = required & Filtered((canWearGoldArmorWithoutNether if nether_unavailable else canWearGoldArmor)(), options=[OptionFilter(required_options, "Gold Armor", operator="contains")], filtered_resolution=True)
     required = required & Filtered(canUseBow(), options=[OptionFilter(required_options, "Bow", operator="contains")], filtered_resolution=True)
     required = required & Filtered(optionalRequireSprint(), options=[OptionFilter(required_options, "Sprint", operator="contains")], filtered_resolution=True)
     required = required & Filtered(optionalRequireJump(), options=[OptionFilter(required_options, "Jump", operator="contains")], filtered_resolution=True)
@@ -126,6 +127,9 @@ def canWearLeatherArmor():
 def canWearGoldArmor():
     return canGetGold() & Has("Progressive Armor", count=2)
 
+def canWearGoldArmorWithoutNether():
+    return canGetGoldWithoutNether() & Has("Progressive Armor", count=2)
+
 def canWearIronArmor():
     return canGetIron() & Has("Progressive Armor", count=3)
 
@@ -186,7 +190,7 @@ def canGetAndUseArmorTrims():
 def canAccessNether():
     createMethod = Has("Water Wheels") | Has("Windmills")
 
-    return (((canGetObsidian() | canUseBucket()) & canUseFlintAndSteel()) & getDifficultyRequirements(ShouldHaveBeforeNetherAccess) & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True))
+    return (((canGetObsidian() | canUseBucket()) & canUseFlintAndSteel()) & getDifficultyRequirements(ShouldHaveBeforeNetherAccess, True) & Filtered(createMethod, options=[OptionFilter(EnabledModSupport, "create", operator="contains")], filtered_resolution=True))
 
 def canAccessEnd():
     return canGetEyesOfEnder() & getDifficultyRequirements(ShouldHaveBeforeWitherOrDragon)
@@ -218,8 +222,10 @@ def canGetIron():
     return canUseStoneTools() & canSmelt()
 
 def canGetGold():
-    return ((canUseIronTools() & canSmelt()) |
-            (canAccessNether() & canCompactResources()))
+    return (canGetGoldWithoutNether() | (canAccessNether() & canCompactResources()))
+
+def canGetGoldWithoutNether():
+    return (canUseIronTools() & canSmelt())
 
 def canGetGoldNugget():
     return ((canUseIronTools() & canGetIron() & canCompactResources()) |
