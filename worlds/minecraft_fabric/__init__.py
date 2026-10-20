@@ -42,7 +42,7 @@ class FabricMinecraftWorld(World):
         advancements = 0
         items = 0
 
-        for location in self.multiworld.get_locations():
+        for location in self.multiworld.get_locations(self.player):
             if "(Itemsanity)" in location.name:
                 items += 1
             else:
