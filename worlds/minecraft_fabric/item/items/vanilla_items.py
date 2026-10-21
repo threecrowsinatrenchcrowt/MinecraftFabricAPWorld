@@ -148,6 +148,8 @@ vanilla_items = [
     filler("Strong Potion of Harming"),
     # Misc
     filler("Random Dye"),
+    # Custom
+    filler("Custom Filler"),
     # BLANK FILLER #####################################################################################################
     blank_filler("Air"),
     blank_filler("Cave Air"),

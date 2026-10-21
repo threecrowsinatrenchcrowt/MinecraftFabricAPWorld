@@ -64,6 +64,7 @@ class FabricMinecraftWorld(World):
             # Other Options
             "keep_inventory": self.options.keep_inventory.value,
             "itemsanity": self.options.itemsanity.value,
+            "custom_single_filler": self.options.custom_single_filler.value,
 
             "randomized_abilities": self.options.randomized_abilities.value,
             "possible_randomized_abilities": self.options.randomized_abilities.valid_keys,
