@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import PerGameCommonOptions, Choice, Range, ItemSet, OptionSet, OptionGroup, Toggle
+from Options import PerGameCommonOptions, Choice, Range, ItemSet, OptionSet, OptionGroup, Toggle, FreeText
 from worlds.minecraft_fabric.location.minecraft_locations import location_table
 
 
@@ -187,6 +187,17 @@ class EmptyFillPercentage(Range):
     range_start = 0
     range_end = 100
     default = 0
+
+class CustomSingleFiller(FreeText):
+    """
+    If not blank, replaces all Non-Trap or -Empty Junk Items with one Minecraft or
+    modded inventory item of the given item code (e.g. "minecraft:stone",
+    "exampleshopmod:coin"). Defaults to "minecraft:emerald" if invalid.
+    This option is primarily for preventing massive amounts of inventory clutter
+    when Itemsanity is Enabled, and is intended for use with shop/quest mods.
+    """
+    display_name = "Custom Filler Item"
+    default = ""
 
 ########################################################################################################################
 # Difficulty Options ###################################################################################################
@@ -494,6 +505,7 @@ class FMCOptions(PerGameCommonOptions):
     itemsanity_local_fill: ItemsanityLocalFill
     excluded_from_itemsanity: ExcludedFromItemsanity
     empty_fill_percentage: EmptyFillPercentage
+    custom_single_filler: CustomSingleFiller
     # General Settings
     required_before_nether: ShouldHaveBeforeNetherAccess
     required_before_bosses: ShouldHaveBeforeWitherOrDragon
@@ -526,7 +538,7 @@ option_groups = [
     ),
     OptionGroup(
         "Itemsanty Options",
-        [Itemsanity, ItemsRequiredToGoal, ItemsanityLocationPercentage, ItemsanityLocalFill, ExcludedFromItemsanity, EmptyFillPercentage]
+        [Itemsanity, ItemsRequiredToGoal, ItemsanityLocationPercentage, ItemsanityLocalFill, ExcludedFromItemsanity, EmptyFillPercentage, CustomSingleFiller]
     ),
     OptionGroup(
         "Difficulty Options",

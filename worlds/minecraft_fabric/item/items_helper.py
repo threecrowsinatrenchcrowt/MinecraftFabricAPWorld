@@ -26,10 +26,10 @@ item_table: dict[str, ProcessedMinecraftItem] = get_item_table()
 def is_filler(item: ProcessedMinecraftItem):
     return item.classification == ItemClassification.filler or item.classification == ItemClassification.useful
 
-def get_junk_items():
+def get_junk_items(world: FabricMinecraftWorld):
     items_to_get = []
     for item in item_table.values():
-        if is_filler(item) and item.fill_type == 0:
+        if is_filler(item) and item.fill_type == 0 and (item.name == "Custom Filler") == (world.options.custom_single_filler.value != ""):
             items_to_get.append(item)
     return items_to_get
 
