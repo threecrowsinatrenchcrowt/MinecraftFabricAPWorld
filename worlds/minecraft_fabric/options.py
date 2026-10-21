@@ -192,7 +192,7 @@ class CustomSingleFiller(FreeText):
     """
     If not blank, replaces all Non-Trap or -Empty Junk Items with one Minecraft or
     modded inventory item of the given item code (e.g. "minecraft:stone",
-    "exampleshopmod:coin"). Defaults to "minecraft:emerald" if invalid.
+    "exampleshopmod:coin"). Defaults to "archipelago:essence_of_archipelago" if invalid.
     This option is primarily for preventing massive amounts of inventory clutter
     when Itemsanity is Enabled, and is intended for use with shop/quest mods.
     """
