@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Optional
 
 from worlds.minecraft_fabric.logic.vanilla_logic import *
 from worlds.minecraft_fabric.region.mc_regions_consts import *
+from worlds.minecraft_fabric.options_consts import *
 
 if TYPE_CHECKING:
    from worlds.minecraft_fabric import FabricMinecraftWorld
@@ -63,11 +64,18 @@ def blacklisted_location(world: FabricMinecraftWorld, location_type: int):
 def is_excluded_itemsanity(world: FabricMinecraftWorld, location: str, location_type: int):
     return location_type >= ITEMSANITY and location not in world.chosen_itemsanity_locations
 
+def is_excluded_version_mod(world: FabricMinecraftWorld, location: str):
+    current_version = ALL_VERSIONS[world.options.target_game_version.value]
+    if current_version not in location_table[location].version_modids: return True
+    return location_table[location].version_modids[current_version] not in world.options.enabled_mods.value
+
 # Creates a Region with Locations, and Excludes Unused Locations based on settings
 def create_locations_advanced(world: FabricMinecraftWorld, region_name: str, locations: dict[str, int]):
    location_list = []
 
    for location, location_type in locations.items():
+       if is_excluded_version_mod(world, location):
+           continue
        if blacklisted_location(world, location_type):
            continue
        if is_excluded_itemsanity(world, location, location_type):
@@ -82,7 +90,7 @@ def create_locations(world: FabricMinecraftWorld, region_name: str, locations: l
    region = Region(region_name, world.player, world.multiworld, region_name)
 
    for name in locations:
-       location = Location(world.player, name, location_table[name], region)
+       location = Location(world.player, name, location_table[name].name, region)
        if "(Itemsanity)" in name:
           world.itemsanity_locations.append(name)
        region.locations.append(location)
@@ -114,6 +122,8 @@ def create_locations_and_connect(world: FabricMinecraftWorld, region_name: str, 
    connect(world, region_name, new_region_name, rule)
 
 def smart_add_rule(world: FabricMinecraftWorld, location: str, rule: Rule, location_type: int):
+    if is_excluded_version_mod(world, location):
+        return
     if blacklisted_location(world, location_type):
         return
     if is_excluded_itemsanity(world, location, location_type):

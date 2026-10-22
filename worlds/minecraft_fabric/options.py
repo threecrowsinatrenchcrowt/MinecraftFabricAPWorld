@@ -90,7 +90,7 @@ class RubyPercentageNeeded(Range):
 ########################################################################################################################
 # Itemsanity ###########################################################################################################
 ########################################################################################################################
-itemsanity_total = len([name for name, id in location_table.items() if "(Itemsanity)" in name])
+itemsanity_total = len([name for name, loc in location_table.items() if "(Itemsanity)" in name])
 
 class Itemsanity(Toggle):
     """
@@ -459,6 +459,14 @@ class TrapLink(Toggle):
 # Mod Support Options ##################################################################################################
 ########################################################################################################################
 
+class TargetGameVersion(Choice):
+    """
+    Controls which Minecraft version the APWorld will attempt to be compatible with.
+    """
+    display_name = "Target Game Version"
+    default = 0
+    option_1_20_1 = 0
+
 class EnabledModSupport(OptionSet):
     """
     WARNING: Fabric Archipelago's Mod support is still in a very early stage, so do keep in mind that playing with mods can lead to unbeatable games!
@@ -518,6 +526,7 @@ class FMCOptions(PerGameCommonOptions):
     traplink_enabled: TrapLink
     # Mod Support
     enabled_mods: EnabledModSupport
+    target_game_version: TargetGameVersion
 
 option_groups = [
     OptionGroup(
@@ -541,7 +550,7 @@ option_groups = [
         [DeathLink, TrapLink]
     ),
     OptionGroup(
-        "Mod Support",
-        [EnabledModSupport]
+        "Mod and Version Support",
+        [EnabledModSupport, TargetGameVersion]
     )
 ]

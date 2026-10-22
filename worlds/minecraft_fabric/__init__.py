@@ -23,7 +23,7 @@ class FabricMinecraftWorld(World):
         item.name: item.item_id for item in item_table.values()
     }
 
-    location_name_to_id = location_table
+    location_name_to_id = dict((name, loc.index) for name, loc in location_table.items())
 
 
     def __init__(self, multiworld, player):

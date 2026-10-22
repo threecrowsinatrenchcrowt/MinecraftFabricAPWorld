@@ -6,7 +6,9 @@ class UnprocessedMinecraftItem:
     name: str
     classification: ItemClassification
     fill_type: int
-    mod_id: str = "minecraft"
+    default_modid: str
+    default_earliest_version: str
+    version_modids: dict[str, str]
 
 @dataclass
 class ProcessedMinecraftItem:
@@ -14,32 +16,22 @@ class ProcessedMinecraftItem:
     classification: ItemClassification
     fill_type: int
     item_id: int
-    mod_id: str = "minecraft"
+    version_modids: dict[str, str]
 
-# VANILLA
+def needed(name: str, default_modid: str = "minecraft", default_earliest_version: str = "1.20.1", version_modids: dict[str, str] = {}):
+    return UnprocessedMinecraftItem(name, ItemClassification.progression, 0, default_modid, default_earliest_version, version_modids)
 
-def needed(name: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.progression, 0)
+def needed_bl(name: str, default_modid: str = "minecraft", default_earliest_version: str = "1.20.1", version_modids: dict[str, str] = {}):
+    return UnprocessedMinecraftItem(name, ItemClassification.progression, 1, default_modid, default_earliest_version, version_modids)
 
-def needed_bl(name: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.progression, 1)
+def useful(name: str, default_modid: str = "minecraft", default_earliest_version: str = "1.20.1", version_modids: dict[str, str] = {}):
+    return UnprocessedMinecraftItem(name, ItemClassification.useful, 0, default_modid, default_earliest_version, version_modids)
 
-def useful(name: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.useful, 0)
+def filler(name: str, default_modid: str = "minecraft", default_earliest_version: str = "1.20.1", version_modids: dict[str, str] = {}):
+    return UnprocessedMinecraftItem(name, ItemClassification.filler, 0, default_modid, default_earliest_version, version_modids)
 
-def filler(name: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.filler, 0)
+def blank_filler(name: str, default_modid: str = "minecraft", default_earliest_version: str = "1.20.1", version_modids: dict[str, str] = {}):
+    return UnprocessedMinecraftItem(name, ItemClassification.filler, 2, default_modid, default_earliest_version, version_modids)
 
-def blank_filler(name: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.filler, 2)
-
-def trap(name: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.trap, 0)
-
-# MODDED
-
-def needed_modded(name: str, mod: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.progression, 0, mod)
-
-def needed_bl_modded(name: str, mod: str):
-    return UnprocessedMinecraftItem(name, ItemClassification.progression, 1, mod)
+def trap(name: str, default_modid: str = "minecraft", default_earliest_version: str = "1.20.1", version_modids: dict[str, str] = {}):
+    return UnprocessedMinecraftItem(name, ItemClassification.trap, 0, default_modid, default_earliest_version, version_modids)

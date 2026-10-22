@@ -1,0 +1,1 @@
+ALL_VERSIONS = ["1.20.1"] # note: should correspond exactly with order of option values in TargetGameVersion

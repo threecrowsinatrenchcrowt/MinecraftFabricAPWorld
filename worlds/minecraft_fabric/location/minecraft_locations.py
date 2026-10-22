@@ -6,6 +6,8 @@ from worlds.minecraft_fabric.location.ironchests.ironchests_itemsanity import ir
 from worlds.minecraft_fabric.location.vanilla.vanilla_advancements import vanilla_advancements, archipelago_advancements
 from worlds.minecraft_fabric.location.vanilla.vanilla_itemsanity import vanilla_itemsanity
 
+from worlds.minecraft_fabric.location.location_manager import MinecraftLocation
+
 ########################################################################################################################
 # ALL LOCATIONS IN RANDOMIZER ##########################################################################################
 ########################################################################################################################
@@ -26,8 +28,12 @@ def get_location_table():
     table.update(add_locations(table, ironchests_itemsanity))
     return table
 
-def add_locations(table: dict[str, int], locations: list[str]):
-    return {name: (index + len(table) + 1) for index, name in enumerate(locations)}
+def add_locations(table: dict[MinecraftLocation, int], locations: list[MinecraftLocation]):
+    retv = {}
+    for index, loc in enumerate(locations):
+        loc.index = index + len(table) + 1
+        retv[loc.name] = loc
+    return retv
 
 # Table of EVERY LOCATION
 location_table = get_location_table()
