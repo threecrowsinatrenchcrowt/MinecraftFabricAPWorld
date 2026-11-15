@@ -135,7 +135,7 @@ def get_filler(world: FabricMinecraftWorld, total_items: int):
 
 
     # Filler Items #####################################################################################################
-    junk: list[ProcessedMinecraftItem] = get_junk_items()
+    junk: list[ProcessedMinecraftItem] = get_junk_items(world)
     while total_items > 0:
         junk_items.append(create_item(world, junk[world.random.randint(0, len(junk) - 1)].name))
         total_items -= 1
