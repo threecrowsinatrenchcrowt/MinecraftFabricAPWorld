@@ -10,3 +10,7 @@ ex. "MyGame4: implement new game" or "Docs: add new guide for customizing MyGame
 
 
 ## If this makes graphical changes, please attach screenshots.
+
+
+## Acknowledgements
+- [ ] No generative AI was used in the creation of this pull request.
